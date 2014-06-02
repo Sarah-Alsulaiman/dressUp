@@ -1007,6 +1007,7 @@ Blockly.Language.procedures_defnoreturn = {
   helpUrl: Blockly.LANG_PROCEDURES_DEFNORETURN_HELPURL,
   init: function() {
     this.setColour(230, .45, .65);
+    this.movable = false;
     var name = Blockly.Procedures.findLegalName(
         Blockly.LANG_PROCEDURES_DEFNORETURN_PROCEDURE, this);
     this.appendDummyInput()
@@ -1209,6 +1210,7 @@ Blockly.Language.procedures_callnoreturn = {
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setTooltip(Blockly.LANG_PROCEDURES_CALLNORETURN_TOOLTIP);
+    
     this.arguments_ = [];
     this.quarkConnections_ = null;
     this.quarkArguments_ = null;

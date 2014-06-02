@@ -4,6 +4,17 @@ function UpdateBlocklyCode() {
 		  '  stroke-width: 4px;',
 		  '  stroke: #fc3;',
 		  '}',
+		  '.blocklyTooltipBackground {',
+		  '  fill: #ffffe1;',
+		  '  stroke-width: 1px;',
+		  '  stroke: #d8d8d8;',
+		  '	 fill-opacity: 0.8;',
+		  '}',
+		  '.blocklyTooltipText {',
+		  '  font-family: sans-serif;',
+		  '  font-size: 16pt;',
+		  '  fill: #000;',
+		  '}',
 		  ''
 		];
 		
@@ -498,6 +509,85 @@ Blockly.Procedures.isLegalName = function(name, workspace, opt_exclude) {
     }
   }
   return true;
+};
+
+
+/**
+ * Handle a mouse-down on an SVG block.
+ * @param {!Event} e Mouse down event.
+ * @private
+ */
+Blockly.Block.prototype.onMouseDown_ = function(e) {
+  if (this.isInFlyout) {
+    return;
+  }
+  // Update Blockly's knowledge of its own location.
+  Blockly.svgResize();
+  Blockly.Block.terminateDrag_();
+  this.select();
+  Blockly.hideChaff();
+  if (Blockly.isRightButton(e)) {
+    // Right-click.
+    if (Blockly.ContextMenu) {
+      this.showContextMenu_(e.clientX, e.clientY);
+    }
+  } else if (!this.movable) {
+    // Allow unmovable blocks to be selected and context menued, but not
+    // dragged.  Let this event bubble up to document, so the workspace may be
+    // dragged instead.
+    //var x = this.startDragX + dx;
+    //var y = this.startDragY + dy;
+    
+    var x = 450;
+    var y = 100;
+    this.svg_.getRootElement().setAttribute('transform',
+        'translate(' + x + ', ' + y + ')');
+    // Drag all the nested bubbles.
+    /*for (var i = 0; i < this.draggedBubbles_.length; i++) {
+      var commentData = this.draggedBubbles_[i];
+      commentData.bubble.setIconLocation(commentData.x + dx,
+                                         commentData.y + dy);
+    }*/
+    return;
+  } else {
+    // Left-click (or middle click)
+    Blockly.removeAllRanges();
+    Blockly.setCursorHand_(true);
+    // Look up the current translation and record it.
+    var xy = this.getRelativeToSurfaceXY();
+    this.startDragX = xy.x;
+    this.startDragY = xy.y;
+    // Record the current mouse position.
+    this.startDragMouseX = e.clientX;
+    this.startDragMouseY = e.clientY;
+    Blockly.Block.dragMode_ = 1;
+    Blockly.Block.onMouseUpWrapper_ = Blockly.bindEvent_(document,
+        'mouseup', this, this.onMouseUp_);
+    Blockly.Block.onMouseMoveWrapper_ = Blockly.bindEvent_(document,
+        'mousemove', this, this.onMouseMove_);
+    // Build a list of comments that need to be moved and where they started.
+    this.draggedBubbles_ = [];
+    var descendants = this.getDescendants();
+    for (var x = 0, descendant; descendant = descendants[x]; x++) {
+      if (descendant.mutator) {
+        var data = descendant.mutator.getIconLocation();
+        data.bubble = descendant.mutator;
+        this.draggedBubbles_.push(data);
+      }
+      if (descendant.comment) {
+        var data = descendant.comment.getIconLocation();
+        data.bubble = descendant.comment;
+        this.draggedBubbles_.push(data);
+      }
+      if (descendant.warning) {
+        var data = descendant.warning.getIconLocation();
+        data.bubble = descendant.warning;
+        this.draggedBubbles_.push(data);
+      }
+    }
+  }
+  // This event has been handled.  No need to bubble up to the document.
+  e.stopPropagation();
 };
 
 
