@@ -810,7 +810,7 @@ Blockly.Language.lime = {
   init: function() {
     this.setColour(76, .45, .65);
     this.appendDummyInput()
-        .appendTitle("Lime");
+        .appendTitle("lime");
     this.setOutput(true, String);
     this.setTooltip('');
   },

@@ -735,7 +735,7 @@ Blockly.Tooltip.show_ = function() {
   	imgNode.style.visibility = "visible";
   	imgNode.style.zIndex = Zindex++;
   	//imgNode.style.border = "2px solid #ffffff";
-  	imgNode.style.background = "rgba(255, 192, 203, 0.5)";
+  	imgNode.style.background = "rgba(255, 192, 203, 0.6)";
   	var preview = document.getElementById('preview');
   	preview.style.visibility = "visible";
   }
