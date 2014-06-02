@@ -577,7 +577,7 @@ function bumpBackBlocks () {
                   metrics.viewWidth + metrics.viewLeft)) {
             // One or more blocks is out of bounds.  Bump them back in.
             var MARGIN = 5;
-            var ToolboxWidth = 100;
+            var ToolboxWidth = Blockly.Toolbox.width;
             var blocks = Blockly.mainWorkspace.getTopBlocks(false);
             for (var b = 0, block; block = blocks[b]; b++) {
               var blockXY = block.getRelativeToSurfaceXY();
