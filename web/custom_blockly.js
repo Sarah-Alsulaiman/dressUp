@@ -970,3 +970,253 @@ Blockly.Block.prototype.onMouseDown_ = function(e) {
 
 
 }
+
+
+
+//-------------------------------------------------------------------------------------
+// Control Tooltip code2
+//-------------------------------------------------------------------------------------
+function controlTooltip2() {
+	Blockly.Tooltip.svgImg_ = null;  
+	Blockly.Tooltip.svgBody_ = null;
+/**
+ * Delay before tooltip appears.
+ */
+Blockly.Tooltip.HOVER_MS = 100;
+      
+
+/**
+ * When hovering over an element, schedule a tooltip to be shown.  If a tooltip
+ * is already visible, hide it if the mouse strays out of a certain radius.
+ * @param {!Event} e Mouse event.
+ * @private
+ */
+Blockly.Tooltip.onMouseMove_ = function(e) {
+  if (!Blockly.Tooltip.element_ || !Blockly.Tooltip.element_.tooltip) {
+    // No tooltip here to show.
+ 	 return;
+  } else if ((Blockly.ContextMenu && Blockly.ContextMenu.visible) || Blockly.Block.dragMode_ != 0 ) {
+    // Don't display a tooltip when a context menu is active, or during a drag.
+    return;
+  }
+  if (Blockly.Tooltip.poisonedElement_ != Blockly.Tooltip.element_) {
+    // The mouse moved, clear any previously scheduled tooltip.
+    window.clearTimeout(Blockly.Tooltip.showPid_);
+    // Maybe this time the mouse will stay put.  Schedule showing of tooltip.
+    Blockly.Tooltip.lastX_ = e.clientX;
+    Blockly.Tooltip.lastY_ = e.clientY;
+    Blockly.Tooltip.showPid_ =
+        window.setTimeout(Blockly.Tooltip.show_, Blockly.Tooltip.HOVER_MS);
+  }
+};
+
+ 
+ /**
+ * Hide the tooltip.
+ */
+Blockly.Tooltip.hide = function() {
+	
+  if (Blockly.Tooltip.visible) {
+    Blockly.Tooltip.visible = false;
+    
+    if (Blockly.Tooltip.svgGroup_) {
+      Blockly.Tooltip.svgGroup_.style.display = 'none';
+    }
+  }
+  window.clearTimeout(Blockly.Tooltip.showPid_);
+};
+ 
+      
+      
+/**
+ * Create the tooltip and show it.
+ * @private
+ */
+Blockly.Tooltip.show_ = function() {
+  Blockly.Tooltip.poisonedElement_ = Blockly.Tooltip.element_;
+  if (!Blockly.Tooltip.svgGroup_) {
+    return;
+  }
+  // Erase all existing text.
+  goog.dom.removeChildren(
+      /** @type {!Element} */ (Blockly.Tooltip.svgText_));
+  // Create new text, line by line.
+  var tip = Blockly.Tooltip.element_.tooltip;
+  if (goog.isFunction(tip)) {
+    tip = tip();
+    //console.log ("TIP = " + tip);
+  }
+  
+  tipImg = tip;
+  
+  var line = "Preview";
+  
+  var tspanElement = Blockly.createSvgElement('tspan',
+        {'dy': '2em', 'x': 25}, Blockly.Tooltip.svgText_);
+  var textNode = document.createTextNode(line);
+  tspanElement.appendChild(textNode);
+ 
+  
+  // Display the tooltip.
+  
+  Blockly.Tooltip.svgOutfit_.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', 'images/'+ tipImg + '.png');
+  Blockly.Tooltip.visible = true;
+  Blockly.Tooltip.svgGroup_.style.display = 'block';
+  // Resize the background and shadow to fit.
+  var bBox = Blockly.Tooltip.svgImg_.getBBox();
+  var width = 0.2 * Blockly.Tooltip.MARGINS + bBox.width;
+  var height = bBox.height;
+  Blockly.Tooltip.svgBackground_.setAttribute('width', width);
+  Blockly.Tooltip.svgBackground_.setAttribute('height', height);
+  Blockly.Tooltip.svgShadow_.setAttribute('width', width);
+  Blockly.Tooltip.svgShadow_.setAttribute('height', height);
+  if (Blockly.RTL) {
+    // Right-align the paragraph.
+    // This cannot be done until the tooltip is rendered on screen.
+    var maxWidth = bBox.width;
+    for (var x = 0, textElement;
+         textElement = Blockly.Tooltip.svgText_.childNodes[x]; x++) {
+      textElement.setAttribute('text-anchor', 'end');
+      textElement.setAttribute('x', maxWidth + Blockly.Tooltip.MARGINS);
+    }
+  }
+  // Move the tooltip to just below the cursor.
+  var anchorX = Blockly.Tooltip.lastX_;
+  if (Blockly.RTL) {
+    anchorX -= Blockly.Tooltip.OFFSET_X + width;
+  } else {
+    anchorX += Blockly.Tooltip.OFFSET_X;
+  }
+  var anchorY = Blockly.Tooltip.lastY_ + Blockly.Tooltip.OFFSET_Y;
+
+  // Convert the mouse coordinates into SVG coordinates.
+  var xy = Blockly.convertCoordinates(anchorX, anchorY, true);
+  anchorX = xy.x;
+  anchorY = xy.y;
+
+  var svgSize = Blockly.svgSize();
+  if (anchorY + bBox.height > svgSize.height) {
+    // Falling off the bottom of the screen; shift the tooltip up.
+    anchorY -= bBox.height + 2 * Blockly.Tooltip.OFFSET_Y;
+  }
+  if (Blockly.RTL) {
+    // Prevent falling off left edge in RTL mode.
+    anchorX = Math.max(Blockly.Tooltip.MARGINS, anchorX);
+  } else {
+    if (anchorX + bBox.width > svgSize.width - 2 * Blockly.Tooltip.MARGINS) {
+      // Falling off the right edge of the screen;
+      // clamp the tooltip on the edge.
+      anchorX = svgSize.width - bBox.width - 2 * Blockly.Tooltip.MARGINS;
+    }
+  }
+  Blockly.Tooltip.svgGroup_.setAttribute('transform',
+      'translate(' + anchorX + ',' + anchorY + ')');
+};
+      
+      //***********************************************************************************************************************
+      
+    /**
+ * Show the context menu for this block.
+ * @param {number} x X-coordinate of mouse click.
+ * @param {number} y Y-coordinate of mouse click.
+ * @private
+ */
+Blockly.Block.prototype.showContextMenu_ = function(x, y) {
+  if (!this.contextMenu) {
+    return;
+  }
+  // Save the current block in a variable for use in closures.
+  var block = this;
+  var options = [];
+
+  if (this.deletable) {
+    // Option to duplicate this block.
+    var duplicateOption = {
+      text: Blockly.MSG_DUPLICATE_BLOCK,
+      enabled: true,
+      callback: function() {
+        block.duplicate_();
+      }
+    };
+    if (this.getDescendants().length > this.workspace.remainingCapacity()) {
+      duplicateOption.enabled = false;
+    }
+    options.push(duplicateOption);
+
+    // Option to delete this block.
+    // Count the number of blocks that are nested in this block.
+    var descendantCount = this.getDescendants().length;
+    if (block.nextConnection && block.nextConnection.targetConnection) {
+      // Blocks in the current stack would survive this block's deletion.
+      descendantCount -= this.nextConnection.targetBlock().
+          getDescendants().length;
+    }
+    var deleteOption = {
+      text: descendantCount == 1 ? Blockly.MSG_DELETE_BLOCK :
+          Blockly.MSG_DELETE_X_BLOCKS.replace('%1', descendantCount),
+      enabled: true,
+      callback: function() {
+        block.dispose(true, true);
+      }
+    };
+    options.push(deleteOption);
+  }
+
+  // Option to get help.
+  var url = goog.isFunction(this.helpUrl) ? this.helpUrl() : this.helpUrl;
+  var helpOption = {enabled: !!url};
+  helpOption.text = Blockly.MSG_HELP;
+  helpOption.callback = function() {
+    block.showHelp_();
+  };
+  options.push(helpOption);
+
+  // Allow the block to add or modify options.
+  if (this.customContextMenu) {
+    this.customContextMenu(options);
+  }
+
+  Blockly.ContextMenu.show(x, y, options);
+};
+
+
+Blockly.Tooltip.createDom = function() {
+  /*
+  <g class="blocklyHidden">
+    <rect class="blocklyTooltipShadow" x="2" y="2"/>
+    <rect class="blocklyTooltipBackground"/>
+    <text class="blocklyTooltipText"></text>
+  </g>
+  */
+  var svgGroup = /** @type {!SVGGElement} */ (
+      Blockly.createSvgElement('g', {'class': 'blocklyHidden'}, null));
+      
+  Blockly.Tooltip.svgGroup_ = svgGroup;
+  Blockly.Tooltip.svgShadow_ = /** @type {!SVGRectElement} */ (
+      Blockly.createSvgElement(
+          'rect', {'class': 'blocklyTooltipShadow', 'x': 2, 'y': 2}, svgGroup));
+  Blockly.Tooltip.svgBackground_ = /** @type {!SVGRectElement} */ (
+      Blockly.createSvgElement(
+          'rect', {'class': 'blocklyTooltipBackground'}, svgGroup));
+  Blockly.Tooltip.svgText_ = /** @type {!SVGTextElement} */ (
+      Blockly.createSvgElement(
+          'text', {'class': 'blocklyTooltipText'}, svgGroup));
+          
+  //Blockly.Tooltip.svgText_.setAttributeNS('http://www.w3.org/1999/xlink', '', 'Preview');
+  
+  Blockly.Tooltip.svgImg_ = /** @type {!SVGTextElement} */ (
+      Blockly.createSvgElement(
+          'image',{'width': 300, 'height': 400} , svgGroup));
+  
+  Blockly.Tooltip.svgImg_.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', 'images/rosie.png');
+    
+  Blockly.Tooltip.svgOutfit_ = /** @type {!SVGTextElement} */ (
+      Blockly.createSvgElement(
+          'image',{'width': 300, 'height': 400} , svgGroup));
+          
+  
+          
+  
+  return svgGroup;
+};
+}
