@@ -17,15 +17,11 @@ Blockly.Language.top1 = {
       						return 'top1-purple';
       					else {
       						color = color.replace(/"/g, "").replace(/\(/g, "").replace(/\)/g, "");
-      						console.log("COLOR="+color);
       						return 'top1-'+ color;
       					}
       				
     				}
 				   );
-  },
-  getName: function() {
-  	return 'top1';
   },
 };
 
@@ -48,7 +44,6 @@ Blockly.Language.top2 = {
       						return 'top2-pink';
       					else {
       						color = color.replace(/"/g, "").replace(/\(/g, "").replace(/\)/g, "");
-      						console.log("COLOR="+color);
       						return 'top2-'+ color;
       					}
       				
@@ -76,7 +71,6 @@ Blockly.Language.top3 = {
       						return 'top3-red';
       					else {
       						color = color.replace(/"/g, "").replace(/\(/g, "").replace(/\)/g, "");
-      						console.log("COLOR="+color);
       						return 'top3-'+ color;
       					}
       				
@@ -104,7 +98,6 @@ Blockly.Language.top4 = {
       						return 'top4-grey';
       					else {
       						color = color.replace(/"/g, "").replace(/\(/g, "").replace(/\)/g, "");
-      						console.log("COLOR="+color);
       						return 'top4-'+ color;
       					}
       				
@@ -132,7 +125,6 @@ Blockly.Language.top5 = {
       						return 'top5-red';
       					else {
       						color = color.replace(/"/g, "").replace(/\(/g, "").replace(/\)/g, "");
-      						console.log("COLOR="+color);
       						return 'top5-'+ color;
       					}
       				
@@ -160,7 +152,6 @@ Blockly.Language.top6 = {
       						return 'top6-purple';
       					else {
       						color = color.replace(/"/g, "").replace(/\(/g, "").replace(/\)/g, "");
-      						console.log("COLOR="+color);
       						return 'top6-'+ color;
       					}
       				
@@ -188,7 +179,6 @@ Blockly.Language.top7 = {
       						return 'top7-red';
       					else {
       						color = color.replace(/"/g, "").replace(/\(/g, "").replace(/\)/g, "");
-      						console.log("COLOR="+color);
       						return 'top7-'+ color;
       					}
       				
@@ -216,7 +206,6 @@ Blockly.Language.top8 = {
       						return 'top8-gold';
       					else {
       						color = color.replace(/"/g, "").replace(/\(/g, "").replace(/\)/g, "");
-      						console.log("COLOR="+color);
       						return 'top8-'+ color;
       					}
       				
@@ -245,7 +234,6 @@ Blockly.Language.bottom1 = {
       						return 'bottom1-blue';
       					else {
       						color = color.replace(/"/g, "").replace(/\(/g, "").replace(/\)/g, "");
-      						console.log("COLOR="+color);
       						return 'bottom1-'+ color;
       					}
       				
@@ -273,7 +261,6 @@ Blockly.Language.bottom2 = {
       						return 'bottom2-grey';
       					else {
       						color = color.replace(/"/g, "").replace(/\(/g, "").replace(/\)/g, "");
-      						console.log("COLOR="+color);
       						return 'bottom2-'+ color;
       					}
       				
@@ -301,7 +288,6 @@ Blockly.Language.bottom3 = {
       						return 'bottom3-red';
       					else {
       						color = color.replace(/"/g, "").replace(/\(/g, "").replace(/\)/g, "");
-      						console.log("COLOR="+color);
       						return 'bottom3-'+ color;
       					}
       				
@@ -329,7 +315,6 @@ Blockly.Language.bottom4 = {
       						return 'bottom4-lime';
       					else {
       						color = color.replace(/"/g, "").replace(/\(/g, "").replace(/\)/g, "");
-      						console.log("COLOR="+color);
       						return 'bottom4-'+ color;
       					}
       				
@@ -357,7 +342,6 @@ Blockly.Language.bottom5 = {
       						return 'bottom5-pink';
       					else {
       						color = color.replace(/"/g, "").replace(/\(/g, "").replace(/\)/g, "");
-      						console.log("COLOR="+color);
       						return 'bottom5-'+ color;
       					}
       				
@@ -385,7 +369,6 @@ Blockly.Language.bottom6 = {
       						return 'bottom6-grey';
       					else {
       						color = color.replace(/"/g, "").replace(/\(/g, "").replace(/\)/g, "");
-      						console.log("COLOR="+color);
       						return 'bottom6-'+ color;
       					}
       				
@@ -413,7 +396,6 @@ Blockly.Language.bottom7 = {
       						return 'bottom7-grey';
       					else {
       						color = color.replace(/"/g, "").replace(/\(/g, "").replace(/\)/g, "");
-      						console.log("COLOR="+color);
       						return 'bottom7-'+ color;
       					}
       				
@@ -441,7 +423,6 @@ Blockly.Language.bottom8 = {
       						return 'bottom8-blue';
       					else {
       						color = color.replace(/"/g, "").replace(/\(/g, "").replace(/\)/g, "");
-      						console.log("COLOR="+color);
       						return 'bottom8-'+ color;
       					}
       				
@@ -469,7 +450,6 @@ Blockly.Language.shoes1 = {
       						return 'shoes1-purple';
       					else {
       						color = color.replace(/"/g, "").replace(/\(/g, "").replace(/\)/g, "");
-      						console.log("COLOR="+color);
       						return 'shoes1-'+ color;
       					}
       				
@@ -497,7 +477,6 @@ Blockly.Language.shoes2 = {
       						return 'shoes2-pink';
       					else {
       						color = color.replace(/"/g, "").replace(/\(/g, "").replace(/\)/g, "");
-      						console.log("COLOR="+color);
       						return 'shoes2-'+ color;
       					}
       				
@@ -525,7 +504,6 @@ Blockly.Language.shoes3 = {
       						return 'shoes3-grey';
       					else {
       						color = color.replace(/"/g, "").replace(/\(/g, "").replace(/\)/g, "");
-      						console.log("COLOR="+color);
       						return 'shoes3-'+ color;
       					}
       				
@@ -553,7 +531,6 @@ Blockly.Language.shoes4 = {
       						return 'shoes4-pink';
       					else {
       						color = color.replace(/"/g, "").replace(/\(/g, "").replace(/\)/g, "");
-      						console.log("COLOR="+color);
       						return 'shoes4-'+ color;
       					}
       				
@@ -581,7 +558,6 @@ Blockly.Language.shoes5 = {
       						return 'shoes5-lime';
       					else {
       						color = color.replace(/"/g, "").replace(/\(/g, "").replace(/\)/g, "");
-      						console.log("COLOR="+color);
       						return 'shoes5-'+ color;
       					}
       				

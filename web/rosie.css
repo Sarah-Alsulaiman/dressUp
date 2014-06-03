@@ -45,10 +45,10 @@ body {
 .rosie {
   z-index:2;
   position: absolute;
-   left: 1120px;
-   top: 88px;
-   width: 600px;
-   height: 900px;
+  left: 1110px;
+  top: 88px;
+  width: 600px;
+  height: 900px;
    
    
 }
@@ -138,7 +138,7 @@ button {
    opacity: 100;
    z-index: 3;
    visibility : hidden;
-   left: 1120px;
+   left: 1110px;
    top: 88px;
   
 }
@@ -152,7 +152,7 @@ button {
    opacity: 100;
    z-index: 3;
    visibility : hidden;
-   left: 1120px;
+   left: 1110px;
    top: 88px;
 }
 
@@ -165,7 +165,7 @@ button {
   opacity: 100;
   z-index: 3;
   visibility : hidden;
-  left: 1120px;
+  left: 1110px;
   top: 88px;
 }
 
@@ -178,7 +178,7 @@ button {
   opacity: 100;
   z-index: 3;
   visibility : hidden;
-  left: 1120px;
+  left: 1110px;
   top: 88px;
   
 }

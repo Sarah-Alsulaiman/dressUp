@@ -108,7 +108,7 @@ void main() {
       if (outfits.length == 0) {
         timer.cancel();
         if (check_input) { sendMessage("DONE!"); }
-        else { sendMessage("error " + text[ERR_MSG]); }
+        else { sendMessage("error#" + text[ERR_MSG] + '#' + ERR_MSG); }
               
       } else {
               display(1); }
@@ -658,7 +658,7 @@ void display(int x) {
      *--------------------------------------------------------------------------------------*/
     //setHtmlVisibility(outfit, true);
     
-    sendMessage("outfit " + outfit);
+    sendMessage("outfit#" + outfit);
     
     /**-------------------------------------------------------------------------------------
      * option2: Draw images on a Canvas (Add a canvas inside rosie-output div)
