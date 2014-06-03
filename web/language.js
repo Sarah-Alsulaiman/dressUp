@@ -339,7 +339,7 @@ Blockly.Language.bottom5 = {
     this.setTooltip( function() {
       					var color = Blockly.JavaScript.valueToCode(thisBlock, 'color', Blockly.JavaScript.ORDER_NONE) || '0';
       					if (color == '0')
-      						return 'bottom5-pink';
+      						return 'bottom5-black';
       					else {
       						color = color.replace(/"/g, "").replace(/\(/g, "").replace(/\)/g, "");
       						return 'bottom5-'+ color;
@@ -999,11 +999,11 @@ Blockly.Language.procedures_defnoreturn = {
   helpUrl: Blockly.LANG_PROCEDURES_DEFNORETURN_HELPURL,
   init: function() {
     this.setColour(230, .45, .65);
-    this.movable = false;
+    //this.movable = false;
     var name = Blockly.Procedures.findLegalName(
         Blockly.LANG_PROCEDURES_DEFNORETURN_PROCEDURE, this);
     this.appendDummyInput()
-    	.appendTitle("Outfit name: ")
+    	.appendTitle("Look shortcut: ")
         .appendTitle(new Blockly.FieldTextInput("Name",
         Blockly.Procedures.rename), 'NAME')
         .appendTitle('', 'PARAMS');

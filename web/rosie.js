@@ -473,16 +473,25 @@ function inject() {
 			setHtmlOpacity("hint1", 1.0);
 			fadeOutAfterDelay("hint1", 5000);
 		break;
-	  	
-		case 4:
-		  	setHtmlVisibility('bottom2-grey', true);
-		  	loadBlocks(CURRENT_LEVEL);
-          	break;
-	
+		
 		case 3:
 			setHtmlVisibility('top5-red', true);
 		  	loadBlocks(CURRENT_LEVEL);
-          	break;
+        break;
+	  	
+		case 4:
+		  	setHtmlVisibility('bottom1-pink', true);
+		  	loadBlocks(CURRENT_LEVEL);
+      	break;
+      	
+      	case 5:
+		  	setHtmlVisibility('top2-gold', true);
+		  	setHtmlVisibility('hair3-', true);
+		  	setHtmlVisibility('shoes2-gold', true);
+		  	loadBlocks(CURRENT_LEVEL);
+      	break;
+	
+		
 	}
 	
 	if (CURRENT_LEVEL >= 5) {
@@ -509,11 +518,25 @@ function loadBlocks (level) {
 	} else if(level == 4) {
 		var xml = Blockly.Xml.textToDom(      
 				'<xml>' +    
-				'  <block type="bottom2" > </block>' +
+				'  <block type="bottom1" > <value name="color"> <block type="pink"> </block> </value> </block>' +
 				'</xml>');
 	
 	
 	}
+	else if(level == 5) {
+		xml = Blockly.Xml.textToDom(      
+			'<xml>' +    
+			'  <block type="procedures_defnoreturn" x="500" y="25">' +
+			' <mutation></mutation> ' +
+			'   <field name="NAME">Name</field> ' +
+			'	<statement name="STACK"> ' +
+			'     <block type="hair3"> <next> <block type="top2"> <value name="color"> <block type="gold"></block> </value> <next> <block type="shoes2"> <value name="color"> <block type="gold"></block> </value> </next> </block> </next> </block> </next> </block> ' +
+			'   </statement> '+
+			'  </block>' +
+			
+			'</xml>');
+	}
+	
 
 	Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, xml);
 }

@@ -310,6 +310,14 @@ void interpret (List commands, bool consider) {
         
         if (part.startsWith("top") && consider) { 
           blocks[block_name['top']][1]= true; //print("TOP block now true"); 
+          if (part == "top2-") { 
+            blocks[block_name['bottom']][1]= true; //assume we already have a bottom if this is a dress
+            if (color == "purple") {
+              blocks[block_name['top_purple']][1]= true;
+              blocks[block_name['bottom_purple']][1]= true;
+            }
+            
+          } 
           if (color == "purple")  blocks[block_name['top_purple']][1]= true;
           else blocks[block_name['top_purple']][1] = false;
         }
@@ -320,7 +328,7 @@ void interpret (List commands, bool consider) {
           if (color == "purple")  blocks[block_name['bottom_purple']][1]= true;
           else if (color == "grey") blocks[block_name['grey']][1] = true;
           else if (color == "blue") {blocks[block_name['blue']][1] = true;}
-          else if (color == "black") {blocks[block_name['black']][1] = true;} 
+          //else if (color == "black") {blocks[block_name['black']][1] = true;} 
           else blocks[block_name['bottom_purple']][1] = false;
           
           if (LIGHTS_CHECK && color == "blue") { //came from repeat processing
