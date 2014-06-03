@@ -53,7 +53,7 @@ function logParse(type, comment) {
 	var COLORS = ['red', 'blue', 'gold', 'lime', 'black', 'pink', 'orange' , 'purple', 'grey'];
 	var Playing = false;
     
-	var HAIR_IMAGES = 6;
+	var HAIR_IMAGES = 7;
 	var TOP_IMAGES = 9;
 	var BOTTOM_IMAGES = 9;
 	var SHOE_IMAGES = 6;
@@ -655,16 +655,15 @@ Blockly.Tooltip.onMouseMove_ = function(e) {
  * Hide the tooltip.
  */
 Blockly.Tooltip.hide = function() {
+	var preview = document.getElementById('preview');
+  	preview.style.visibility = "hidden";
 	
 	var imgNode = document.getElementById(tipImg);
 	if (imgNode && tipImg != originalTop && tipImg != originalBottom && tipImg != originalHair && tipImg != originalShoes){
 		imgNode.style.visibility = "hidden";
 		imgNode.style.border = "none";
   		imgNode.style.background = "none";
-  		var preview = document.getElementById('preview');
-  		preview.style.visibility = "hidden";
-		
-	}
+  	}
 	
 	//restore original image (if any) after preview
 	imgNode = document.getElementById(tempImg);

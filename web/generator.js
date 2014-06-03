@@ -240,7 +240,10 @@ Blockly.JavaScript.hair5 = function() {
 	
 };
 
-
+Blockly.JavaScript.hair6 = function() {
+	return '[ "hair6-", "blue", ' + this.id + ', "any", "casual" ]';
+	
+};
 Blockly.JavaScript.set_color = function() {
 	var part = this.getTitleValue('part');
 	var color = Blockly.JavaScript.valueToCode(this, 'SET', Blockly.JavaScript.ORDER_NONE) || '0';

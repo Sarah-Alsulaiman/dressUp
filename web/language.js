@@ -30,7 +30,7 @@ Blockly.Language.top1 = {
 };
 
 //-------------------------------------------------------------------------
-// Top2
+// Top2 - Wedding Dress
 //-------------------------------------------------------------------------
 Blockly.Language.top2 = {
   helpUrl: 'http://www.example.com/',
@@ -38,7 +38,7 @@ Blockly.Language.top2 = {
     this.setColour(330, .45, .65);
     this.appendValueInput("color")
         .setCheck([String, "var"])
-        .appendTitle("Casual top")
+        .appendTitle("Wedding dress")
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     var thisBlock = this; 
@@ -591,14 +591,14 @@ Blockly.Language.shoes5 = {
 };
 
 //-------------------------------------------------------------------------
-// Hair 1 (Natural)
+// Hair 1 (brunette)
 //-------------------------------------------------------------------------
 Blockly.Language.hair1 = {
   helpUrl: 'http://www.example.com/',
   init: function() {
     this.setColour(330, .45, .65);
     this.appendDummyInput()
-    	.appendTitle("Natural look")
+    	.appendTitle("Brunette")
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     var thisBlock = this; 
@@ -615,7 +615,7 @@ Blockly.Language.hair2 = {
   init: function() {
     this.setColour(330, .45, .65);
     this.appendDummyInput()
-    	.appendTitle("Blonde hair")
+    	.appendTitle("Blonde")
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     var thisBlock = this; 
@@ -666,11 +666,27 @@ Blockly.Language.hair5 = {
   init: function() {
     this.setColour(330, .45, .65);
     this.appendDummyInput()
-    	.appendTitle("Short cut")
+    	.appendTitle("Redhead")
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     var thisBlock = this; 
     this.setTooltip('hair5-');
+  }
+};
+
+//-------------------------------------------------------------------------
+// Hair 6 (6)
+//-------------------------------------------------------------------------
+Blockly.Language.hair6 = {
+  helpUrl: 'http://www.example.com/',
+  init: function() {
+    this.setColour(330, .45, .65);
+    this.appendDummyInput()
+    	.appendTitle("Curly")
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    var thisBlock = this; 
+    this.setTooltip('hair6-');
   }
 };
 
@@ -810,7 +826,7 @@ Blockly.Language.lime = {
   init: function() {
     this.setColour(76, .45, .65);
     this.appendDummyInput()
-        .appendTitle("lime");
+        .appendTitle("Green");
     this.setOutput(true, String);
     this.setTooltip('');
   },
