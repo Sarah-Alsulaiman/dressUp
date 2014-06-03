@@ -77,6 +77,8 @@ function logParse(type, key, comment) {
 	var CURRENT_BG = 'room';
 	var Zindex = 3;
 	
+	//var virtualX = 0;
+	//var virtualY = 0;
 //------------------------------------------------------------------------------------------
 // Add Event Listener
 //------------------------------------------------------------------------------------------
@@ -524,9 +526,13 @@ function loadBlocks (level) {
 	
 	}
 	else if(level == 5) {
+		var x = 600;
+		var y = 30;
+		var width = 270;
+		var height = 570;
 		xml = Blockly.Xml.textToDom(      
 			'<xml>' +    
-			'  <block type="procedures_defnoreturn" x="500" y="25">' +
+			'  <block type="procedures_defnoreturn" x="' + x + '" y="' + y + '">' +
 			' <mutation></mutation> ' +
 			'   <field name="NAME">Name</field> ' +
 			'	<statement name="STACK"> ' +
@@ -592,7 +598,9 @@ function restoreProcedures() {
 //----------------------------------------------------------------
 
 function bumpBackBlocks () {
+	
         if (Blockly.Block.dragMode_ == 0) {
+        	//test();
           var metrics = Blockly.getMainWorkspaceMetrics();
           if (metrics.contentTop < 0 ||
               metrics.contentTop + metrics.contentHeight >
@@ -608,6 +616,7 @@ function bumpBackBlocks () {
             for (var b = 0, block; block = blocks[b]; b++) {
               var blockXY = block.getRelativeToSurfaceXY();
               var blockHW = block.getHeightWidth();
+              if (block.type == 'defnoreturn') { test(block); continue;}
               
               // Bump any block that's above the top back inside.
               var overflow = metrics.viewTop + MARGIN - blockHW.height -
@@ -634,10 +643,47 @@ function bumpBackBlocks () {
                 block.moveBy(overflow + 30, 0);
               }
             }
-          }
+          }//*/
+          
         }
 }
 
+function test(block) {
+	var VirtualX = 600;
+	var VirtualWidth = 270;
+	var VirtualY = 30
+	var VirtualHeight = 570;
+	
+	//var blocks = Blockly.mainWorkspace.getTopBlocks(false);
+    //for (var b = 0, block; block = blocks[b]; b++) {	
+    	var blockXY = block.getRelativeToSurfaceXY();
+    	var blockHW = block.getHeightWidth();
+		
+		// off the right
+		var overflow = blockXY.x + blockHW.width - VirtualX - VirtualWidth;
+		if (overflow > 0) {
+			block.moveBy(-overflow, 0 );
+		}
+		
+		// off the left
+		var overflow = blockXY.x - VirtualX;
+		if (overflow < 0) {
+			block.moveBy(overflow * -1, 0 );
+		}
+		
+		// off the top
+		var overflow = blockXY.y - VirtualY;
+		if (overflow < 0) {
+			block.moveBy(0, overflow * -1);
+		}
+		
+		// off the bottom
+		var overflow = blockXY.y + blockHW.height - VirtualY - VirtualHeight;
+		if (overflow > 0) {
+			block.moveBy(0, -overflow );
+		}
+	//}
+}
 //-------------------------------------------------------------------------------------
 // Control Tooltip code
 //-------------------------------------------------------------------------------------
