@@ -1001,10 +1001,10 @@ Blockly.Language.procedures_defnoreturn = {
     this.setColour(230, .45, .65);
     //this.movable = false;
     var name = Blockly.Procedures.findLegalName(
-        Blockly.LANG_PROCEDURES_DEFNORETURN_PROCEDURE, this);
+        "Name", this);
     this.appendDummyInput()
     	.appendTitle("Look shortcut: ")
-        .appendTitle(new Blockly.FieldTextInput("Name",
+        .appendTitle(new Blockly.FieldTextInput(name,
         Blockly.Procedures.rename), 'NAME')
         .appendTitle('', 'PARAMS');
     this.appendStatementInput('STACK')
