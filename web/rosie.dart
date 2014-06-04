@@ -98,7 +98,7 @@ void main() {
     if (msg.startsWith("@dart")) {
       //print('Dart received code from HTML ');
       CURRENT_LEVEL = msg.substring(5,6);
-      text['if'] = (CURRENT_LEVEL == "4")? "You need to account for an outfit for cold weather and another for hot weather" : "You need to account for an outfit to a party and another to a gym";
+      text['if'] = (CURRENT_LEVEL == "4")? "You need to account for an outfit for cold weather and another for hot weather" : "You need to account for an outfit to a wedding and another to a gym";
       parts = msg.split("#");
       randomize();
       compile(parts[1]);
@@ -167,7 +167,7 @@ void main() {
   text['all_black'] = "Remember, Rosie doesn't want to wear all black!";
   text['not_black'] = "Remember, Rosie wants a black bottom <br> if the top is not black";
   
-  text['place'] = 'Remember, you can use the shortcut when going to a party';
+  text['place'] = 'Remember, you can use the shortcut when going to a wedding';
   
   text['count'] = 'Remember, Rosie wants to repeat 3 times!';
   
