@@ -27,6 +27,10 @@ goog.provide('Blockly.Virtual');
 
 goog.require('goog.Timer');
 
+Blockly.Virtual.width = 270;
+Blockly.Virtual.height = 570;
+Blockly.Virtual.top = 30;
+Blockly.Virtual.left = 600;
 
 /**
  * Class for a trash can.
@@ -132,14 +136,14 @@ Blockly.Virtual.prototype.svgBody_ = null;
  * @type {number}
  * @private
  */
-Blockly.Virtual.prototype.left_ = 0;
+Blockly.Virtual.prototype.left_ = 600;
 
 /**
  * Top coordinate of the trash can.
  * @type {number}
  * @private
  */
-Blockly.Virtual.prototype.top_ = 0;
+Blockly.Virtual.prototype.top_ = 30;
 
 /**
  * Create the trash can elements.
@@ -153,8 +157,9 @@ Blockly.Virtual.prototype.createDom = function() {
       this.svgGroup_);
   this.svgBody_.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href',
       Blockly.pathToBlockly + this.BODY_URL_);
-  this.svgBody_.setAttribute('y', 30);
-  this.svgBody_.setAttribute('x', 600);
+  this.svgBody_.setAttribute('y', this.top_);
+  this.svgBody_.setAttribute('x', this.left_);
+  
   //this.svgLid_ = Blockly.createSvgElement('image',
   //    {'width': this.WIDTH_, 'height': this.LID_HEIGHT_},
   //    this.svgGroup_);

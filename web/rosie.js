@@ -77,8 +77,6 @@ function logParse(type, key, comment) {
 	var CURRENT_BG = 'room';
 	var Zindex = 3;
 	
-	//var virtualX = 0;
-	//var virtualY = 0;
 //------------------------------------------------------------------------------------------
 // Add Event Listener
 //------------------------------------------------------------------------------------------
@@ -327,7 +325,7 @@ function workspaceChange() {
 	//console.log("CHANGE");
 	var procedureNames = [[]];
 	var callNames = [];
- 	var a = []; var b = []; var onlyProcedure = []; var diff = [];
+ 	var a = []; var b = []; var diff = [];
  	var topBlocks = Blockly.mainWorkspace.getTopBlocks(false); //+++ ALL OR TOP ONLY?
  	if (topBlocks.length > BlocksTotal) { //new blocks added
 		//console.log("new block added");
@@ -502,6 +500,7 @@ function inject() {
 		Blockly.mainWorkspace.traceOn();
 		Blockly.mainWorkspace.getCanvas().addEventListener('blocklyWorkspaceChange', workspaceChange, false);
 		Blockly.mainWorkspace.addVirtual();
+		//addVirtual();
 	}
     
     Blockly.addChangeListener(bumpBackBlocks); 
@@ -568,7 +567,6 @@ function storeProcedure () {
   			}
   		}
   	}
-  		
   	sessionStorage.procedure = saved_procedure;
 }
 
@@ -593,97 +591,92 @@ function restoreProcedures() {
   	}
 }
 
-//----------------------------------------------------------------
+//---------------------------------------------------------------------------------------
 // Bump back blocks that are dragged outside workspace metrics
-//----------------------------------------------------------------
-
+//---------------------------------------------------------------------------------------
 function bumpBackBlocks () {
-	
-        if (Blockly.Block.dragMode_ == 0) {
-        	//test();
-          var metrics = Blockly.getMainWorkspaceMetrics();
-          if (metrics.contentTop < 0 ||
-              metrics.contentTop + metrics.contentHeight >
-              metrics.viewHeight + metrics.viewTop ||
-              metrics.contentLeft < (Blockly.RTL ? metrics.viewLeft : 0) ||
-              metrics.contentLeft + metrics.contentWidth > (Blockly.RTL ?
-                  metrics.viewWidth :
-                  metrics.viewWidth + metrics.viewLeft)) {
-            // One or more blocks is out of bounds.  Bump them back in.
-            var MARGIN = 5;
-            var ToolboxWidth = Blockly.Toolbox.width;
-            var blocks = Blockly.mainWorkspace.getTopBlocks(false);
-            for (var b = 0, block; block = blocks[b]; b++) {
-              var blockXY = block.getRelativeToSurfaceXY();
-              var blockHW = block.getHeightWidth();
-              if (block.type == 'defnoreturn') { test(block); continue;}
-              
-              // Bump any block that's above the top back inside.
-              var overflow = metrics.viewTop + MARGIN - blockHW.height -
-                  blockXY.y + blockHW.height;
-              if (overflow > 0) {
-                block.moveBy(0, overflow);
-              }
-              // Bump any block that's below the bottom back inside.
-              var overflow = metrics.viewTop + metrics.viewHeight - MARGIN -
-                  blockXY.y - blockHW.height;
-              if (overflow < 0) {
-                block.moveBy(0, overflow);
-              }
-              // Bump any block that's off the left back inside.
-              var overflow = MARGIN + ToolboxWidth + metrics.viewLeft - blockXY.x - 0;
-                  //(Blockly.RTL ? 0 : blockHW.width);
-              if (overflow > 0) {
-                block.moveBy(overflow + 30, 0);
-              }
-              // Bump any block that's off the right back inside.
-              var overflow = metrics.viewLeft + metrics.viewWidth - MARGIN -
-                  blockXY.x + (Blockly.RTL ? blockHW.width : 0);
-              if (overflow < 0) {
-                block.moveBy(overflow + 30, 0);
-              }
-            }
-          }//*/
-          
+	if (Blockly.Block.dragMode_ == 0) {
+		var topBlocks = Blockly.mainWorkspace.getTopBlocks(false);
+		for (var j = 0; j < topBlocks.length; j++) {
+			if (topBlocks[j].type == 'procedures_defnoreturn') {
+				restrictBoundry(topBlocks[j]);
+			}
         }
+        
+		var metrics = Blockly.getMainWorkspaceMetrics();
+      	if (metrics.contentTop < 0 ||
+        	metrics.contentTop + metrics.contentHeight > metrics.viewHeight + metrics.viewTop ||
+        	metrics.contentLeft < (Blockly.RTL ? metrics.viewLeft : 0) ||
+          	metrics.contentLeft + metrics.contentWidth > (Blockly.RTL ? metrics.viewWidth : metrics.viewWidth + metrics.viewLeft)) {
+        	// One or more blocks is out of bounds.  Bump them back in.
+      		var MARGIN = 5;
+        	var ToolboxWidth = Blockly.Toolbox.width;
+        	var blocks = Blockly.mainWorkspace.getTopBlocks(false);
+        	for (var b = 0, block; block = blocks[b]; b++) {
+          		var blockXY = block.getRelativeToSurfaceXY();
+          		var blockHW = block.getHeightWidth();
+          		
+          		// Bump any block that's above the top back inside.
+          		var overflow = metrics.viewTop + MARGIN - blockHW.height - blockXY.y + blockHW.height;
+          		if (overflow > 0) {
+            		block.moveBy(0, overflow);
+          		}
+          		// Bump any block that's below the bottom back inside.
+          		var overflow = metrics.viewTop + metrics.viewHeight - MARGIN -
+              	blockXY.y - blockHW.height;
+          		if (overflow < 0) {
+            		block.moveBy(0, overflow);
+          		}
+          		// Bump any block that's off the left back inside.
+          		var overflow = MARGIN + ToolboxWidth + metrics.viewLeft - blockXY.x - 0; //(Blockly.RTL ? 0 : blockHW.width);
+          		if (overflow > 0) {
+            		block.moveBy(overflow + 30, 0);
+          		}
+          		// Bump any block that's off the right back inside.
+          		var overflow = metrics.viewLeft + metrics.viewWidth - MARGIN -blockXY.x + (Blockly.RTL ? blockHW.width : 0);
+          		if (overflow < 0) {
+            		block.moveBy(overflow + 30, 0);
+          		}
+        	}
+		}//*/
+    }
 }
 
-function test(block) {
-	var VirtualX = 600;
-	var VirtualWidth = 270;
-	var VirtualY = 30
-	var VirtualHeight = 570;
+//---------------------------------------------------------------------------------------
+// Bump back procedure blocks outside virtual metrics
+//---------------------------------------------------------------------------------------
+function restrictBoundry(block) {
+	var blockXY = block.getRelativeToSurfaceXY();
+    var blockHW = block.getHeightWidth();
+
+	var rand = Math.floor((Math.random() * 70) + 1);
+	var MARGIN = 10;
 	
-	//var blocks = Blockly.mainWorkspace.getTopBlocks(false);
-    //for (var b = 0, block; block = blocks[b]; b++) {	
-    	var blockXY = block.getRelativeToSurfaceXY();
-    	var blockHW = block.getHeightWidth();
-		
-		// off the right
-		var overflow = blockXY.x + blockHW.width - VirtualX - VirtualWidth;
-		if (overflow > 0) {
-			block.moveBy(-overflow, 0 );
-		}
-		
-		// off the left
-		var overflow = blockXY.x - VirtualX;
-		if (overflow < 0) {
-			block.moveBy(overflow * -1, 0 );
-		}
-		
-		// off the top
-		var overflow = blockXY.y - VirtualY;
-		if (overflow < 0) {
-			block.moveBy(0, overflow * -1);
-		}
-		
-		// off the bottom
-		var overflow = blockXY.y + blockHW.height - VirtualY - VirtualHeight;
-		if (overflow > 0) {
-			block.moveBy(0, -overflow );
-		}
-	//}
+	// off the right
+	var overflow = blockXY.x + blockHW.width - Blockly.Virtual.X - Blockly.Virtual.Width + MARGIN;
+	if (overflow > 0) {
+		block.moveBy(-overflow - rand, 0 );
+	}
+	
+	// off the left
+	var overflow = blockXY.x - Blockly.Virtual.X - MARGIN;
+	if (overflow < 0) {
+		block.moveBy(overflow * -1 + rand, 0 );
+	}
+	
+	// off the top
+	var overflow = blockXY.y - Blockly.Virtual.Y - MARGIN;
+	if (overflow < 0) {
+		block.moveBy(0, overflow * -1 + rand);
+	}
+	
+	// off the bottom
+	var overflow = blockXY.y + blockHW.height - Blockly.Virtual.Y - Blockly.Virtual.Height + MARGIN;
+	if (overflow > 0) {
+		block.moveBy(0, -overflow - rand );
+	}
 }
+
 //-------------------------------------------------------------------------------------
 // Control Tooltip code
 //-------------------------------------------------------------------------------------
