@@ -66,6 +66,12 @@ body {
    border: 2px solid white;
 }
 
+.level-text p {
+  color: black;
+  text-decoration: underline;
+  display: inline;
+}
+
 .preview {
   font-family: tahoma, arial, sans-serif;
    font-size: 29px;

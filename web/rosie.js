@@ -45,8 +45,8 @@ function logParse(type, key, comment) {
                         "<br>Rosie is invited to a party. Dress code is purple. <BR/> Help Rosie decide what to wear.",
                         "<br>Rosie wants to do a fashion show where she will wear a blue jeans and then a black long skirt and then a short grey skirt, she will do this over and over again 3 times in a row",
                         "<br>Rosie wants to go out for a walk. Can you help Rosie choose what to wear so that when it's hot outside, she would wear a t-shirt, and when it is cold outside she would wear a jacket?",
-                        "Now, you can create a shortcut for an outfit with your favorite colors to wear to parties and give it a name so that you can use it faster later, can you pick such outfit and let Rosie wear it?(Hint: a shortcut will appear in the 'outfit definitions' menu just after you create a full outfit",
-                        "Can you dress Rosie so that when she is going to her friend's graduation party, she would wear the favorite outfit you picked earlier using the shortcut, and when she is going to a gym, she would wear gym outfit?",
+                        "Now, instead of choosing a new look each level, you can create a shortcut to a certain look and use it in later levels. You can give this look a name and you'll ba able to use it later!",
+                        "Can you dress Rosie so that when she is going to her sister's wedding, she would have the look <p>" + sessionStorage.UserLook + "</p> and when she is going to a gym, she would wear gym outfit?",
                         "<br>Play with the blocks as you like! <br><br>"
                        ];
 	// Rosie wore a top that is either black or purple, when she wears a black top, she doesn't want to wear a black bottom, otherwise she wants the bottom to be black. Pick a bottom so that she doesn't wear all black (Hint: check new blocks in the control section!)
@@ -253,9 +253,9 @@ function processEvent(event) {
 }
 
 //---------------------------------------------------------------------------------------
-// Pop up repeat hint
+// Return coordinates of the WorkSpace
 //---------------------------------------------------------------------------------------
-function popUpHint(parts) {
+function getWorkSpacePosition() {
 	var cumulativeOffset = function(element) {
 	var top = 0, left = 0;
 	do {
@@ -269,22 +269,30 @@ function popUpHint(parts) {
 	};
 	
 	var wsPosition = cumulativeOffset(document.getElementById('rosie-code'));
-	//console.log("wsPosition = " + wsPosition.top);
+	return wsPosition;
+}
+
+//---------------------------------------------------------------------------------------
+// Pop up repeat hint
+//---------------------------------------------------------------------------------------
+function popUpHint(parts) {
+	var wsPosition = getWorkSpacePosition();
   	var block = Blockly.mainWorkspace.getBlockById(parts[3]);
-  	// Move the duplicate next to the old block.
-	var xy = block.getRelativeToSurfaceXY();
-	xy.x += wsPosition.left; //translate toolbox and text level here
-	xy.x += Blockly.Toolbox.width+ 200;	
-	xy.y += wsPosition.top; //translate toolbox and text level here
-	xy.y += 20;	
+	
+	var blockHW = block.getHeightWidth();
+	var blockXY = block.getRelativeToSurfaceXY();
+	var x = blockXY.x + blockHW.width + wsPosition.left + 10;
+	var y = blockXY.y + wsPosition.top;
+	
   	var id = "repeat_hint";
   	var el = document.getElementById(id);
   	el.innerHTML= 'ROUND ' + parts[4] + ' out of ' + parts[5];
-  	el.style.top =  xy.y + "px";
-  	el.style.left = xy.x + "px";
+  	el.style.top =  y + "px";
+  	el.style.left = x + "px";
   	setHtmlOpacity("repeat_hint", 1.0);
 	fadeOutAfterDelay("repeat_hint", 1000);
 }
+  
   
 //---------------------------------------------------------------------------------------
 //  Check if blocks are connected (procedures are special case)                                                                               
@@ -525,13 +533,9 @@ function loadBlocks (level) {
 	
 	}
 	else if(level == 5) {
-		var x = 600;
-		var y = 30;
-		var width = 270;
-		var height = 570;
 		xml = Blockly.Xml.textToDom(      
 			'<xml>' +    
-			'  <block type="procedures_defnoreturn" x="' + x + '" y="' + y + '">' +
+			'  <block type="procedures_defnoreturn" x="' + Blockly.Virtual.X + '" y="' + Blockly.Virtual.Y + '">' +
 			' <mutation></mutation> ' +
 			'   <field name="NAME">Name</field> ' +
 			'	<statement name="STACK"> ' +
@@ -568,6 +572,17 @@ function storeProcedure () {
   		}
   	}
   	sessionStorage.procedure = saved_procedure;
+  	
+  	if (CURRENT_LEVEL == 5) {
+  		var topBlocks = Blockly.mainWorkspace.getTopBlocks(false);
+		for (var j = 0; j < topBlocks.length; j++) {
+			if (topBlocks[j].type == 'procedures_defnoreturn') {
+				var name = topBlocks[j].getProcedureDef();
+				sessionStorage.UserLook = name[0];
+				console.log("UserLook = " + name[0]);
+			}
+		}
+  	}
 }
 
 
