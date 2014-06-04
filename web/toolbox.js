@@ -70,9 +70,6 @@ function getToolbox() {
       //------------------------------------------------------------------------------
       var toolbox5 = '<xml> <category></category> ';
       
-      toolbox5 += '<category name = "+ Outfit Definitions" custom="PROCEDURE">';
-      toolbox5 += '</category> <category> </category>'; //close definitions
-      
       toolbox5 += '<category name="+ Coloring"> <block type="red"></block> <block type="blue"></block>' + 
                     '<block type="black"></block> <block type="pink"></block> <block type="grey"></block> <block type="orange"></block> <block type="purple"></block>' +
                     '<block type="lime"></block> <block type="gold"></block>' ;
