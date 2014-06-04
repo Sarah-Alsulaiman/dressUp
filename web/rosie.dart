@@ -56,7 +56,7 @@ bool REPEAT_SKIRT = false;
 bool REPEAT_SKIRT_SHORT = false;
 
 //format [ [blockName, value, levels] ]
-List blocks = [  ['repeat', false, 3], ['grey', false, 3],  ['blue', false, 3], 
+List blocks = [  ['repeat', false, 3], ['black', false, 3], ['grey', false, 3],  ['blue', false, 3], 
                  ['top', false, 1, 2, 4, 5, 6], ['bottom', false, 1, 2, 3, 4, 5, 6], 
                  ['top_purple', false, 2], ['bottom_purple', false, 2],
                  ['abstraction', false, 5, 6], ['call', false, 5, 6], ['func', false, 5, 6],
@@ -120,31 +120,31 @@ void main() {
   });
   
   block_name['repeat'] = 0;
-  //block_name['black'] = 1;
-  block_name['grey'] = 1;
-  block_name['blue'] = 2;
+  block_name['black'] = 1;
+  block_name['grey'] = 2;
+  block_name['blue'] = 3;
   
-  block_name['top'] = 3;
-  block_name['bottom'] = 4;
-  block_name['top_purple'] = 5;
-  block_name['bottom_purple'] = 6;
+  block_name['top'] = 4;
+  block_name['bottom'] = 5;
+  block_name['top_purple'] = 6;
+  block_name['bottom_purple'] = 7;
   
-  block_name['abstraction'] = 7;
-  block_name['call'] = 8;
-  block_name['func'] = 9;
+  block_name['abstraction'] = 8;
+  block_name['call'] = 9;
+  block_name['func'] = 10;
   
-  block_name['other'] = 10;
-  block_name['then'] = 11;
-  block_name['color'] = 12;
-  block_name['get'] = 13;
-  block_name['weather'] = 14;
-  block_name['going'] = 15;
-  block_name['if'] = 16;
+  block_name['other'] = 11;
+  block_name['then'] = 12;
+  block_name['color'] = 13;
+  block_name['get'] = 14;
+  block_name['weather'] = 15;
+  block_name['going'] = 16;
+  block_name['if'] = 17;
  
   text['repeat'] = "Rosie wants to repeat the process, <br> choose a block to repeat over and over again<br>";
-  text['black'] = "Make sure you choose the color black <br> for one of the bottoms!";
-  text['grey'] = "Make sure you choose the color grey <br> for one of the bottoms!";
-  text['blue'] = "Make sure you choose the color blue <br> for one of the bottoms!";
+  text['black'] = "Make sure you add a long skirt block!";
+  text['grey'] = "Make sure you add a short skirt block!";
+  text['blue'] = "Make sure you add a long jeans block!";
   
   text['weather'] = "Remember, it might be hot or cold outside";
   
@@ -328,13 +328,13 @@ void interpret (List commands, bool consider) {
           if (color == "purple")  blocks[block_name['bottom_purple']][1]= true;
           else if (color == "grey") blocks[block_name['grey']][1] = true;
           else if (color == "blue") {blocks[block_name['blue']][1] = true;}
-          //else if (color == "black") {blocks[block_name['black']][1] = true;} 
+          else if (color == "black") {blocks[block_name['black']][1] = true;} 
           else blocks[block_name['bottom_purple']][1] = false;
           
           if (LIGHTS_CHECK && color == "blue") { //came from repeat processing
             REPEAT_JEANS = true;
           }
-          if (LIGHTS_CHECK && color == "pink") { //came from repeat processing
+          if (LIGHTS_CHECK && color == "black") { //came from repeat processing
             REPEAT_SKIRT = true;
           }
           if (LIGHTS_CHECK && color == "grey") { //came from repeat processing
@@ -628,7 +628,7 @@ void randomize() {
 void clearBlocks() {
   
   blocks[block_name['repeat']][1] = false;
-  //blocks[block_name['black']][1] = false;
+  blocks[block_name['black']][1] = false;
   blocks[block_name['grey']][1] = false;
   blocks[block_name['blue']][1] = false;
   
