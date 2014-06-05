@@ -1126,7 +1126,7 @@ Blockly.Language.procedures_defnoreturn = {
     // Add option to create caller.
     var option = {enabled: true};
     var name = this.getTitleValue('NAME');
-    option.text = Blockly.LANG_PROCEDURES_CREATE_DO.replace('%1', name);
+    option.text = "Create \"shortcut to: " + name + " \"" ;
 
     var xmlMutation = goog.dom.createDom('mutation');
     xmlMutation.setAttribute('name', name);
