@@ -42,10 +42,10 @@ function logParse(type, key, comment) {
 	var MIN_LEVEL = 1;
 	var CURRENT_LEVEL = getLevel();
 	var LEVELS_MSG = ["<br>Rosie is going to a resturant with her friend, Jasmin. Help her decide what to wear.<BR><BR>",
-                        "<br>Rosie is invited to a party. Dress code is purple. <BR/> Help Rosie decide what to wear.",
-                        "<br>Rosie wants to do a fashion show where she will wear a blue jeans and then a black long skirt and then a short grey skirt, she will do this over and over again 3 times in a row",
+                        "<br>Jasmin is daring Rosie to wear a long jeans then change to a long skirt, and then change back to a long jeans again then change to a long skirt three times in a row, Can you help Rosie accomplish this?",
+                        "<br>Jasmin is daring Rosie to do it 6 times in a row using only four blocks, can you help Rosie?",
                         "<br>Rosie wants to go out for a walk. Can you help Rosie choose what to wear so that when it's hot outside, she would wear a t-shirt, and when it is cold outside she would wear a jacket?",
-                        "Now, instead of choosing a new look each level, you can create a shortcut to a certain look and use it in later levels. You can give this look a name and you'll ba able to use it later!",
+                        "<br>Now, instead of choosing a new look each level, you can create a shortcut to a certain look and use it in later levels. You can give this look a name and you'll ba able to use it later!",
                         "Can you dress Rosie so that when she is going to her sister's wedding, she would have the look <p>" + sessionStorage.UserLook + "</p> and when she is going to a gym, she would wear gym outfit?",
                         "<br>Play with the blocks as you like! <br><br>"
                        ];
@@ -286,7 +286,7 @@ function popUpHint(parts) {
 	
   	var id = "repeat_hint";
   	var el = document.getElementById(id);
-  	el.innerHTML= 'ROUND ' + parts[4] + ' out of ' + parts[5];
+  	el.innerHTML= 'ROUND <p>' + parts[4] + '</p> out of ' + parts[5];
   	el.style.top =  y + "px";
   	el.style.left = x + "px";
   	setHtmlOpacity("repeat_hint", 1.0);
@@ -483,11 +483,6 @@ function inject() {
 			setHtmlOpacity("hint1", 1.0);
 			fadeOutAfterDelay("hint1", 5000);
 		break;
-		
-		case 3:
-			setHtmlVisibility('top5-red', true);
-		  	loadBlocks(CURRENT_LEVEL);
-        break;
 	  	
 		case 4:
 		  	setHtmlVisibility('bottom1-pink', true);
@@ -665,7 +660,7 @@ function bumpBackBlocks () {
 function restrictBoundry(block) {
 	var blockXY = block.getRelativeToSurfaceXY();
     var blockHW = block.getHeightWidth();
-
+	var textHeight = 50;
 	var rand = Math.floor((Math.random() * 70) + 1);
 	var MARGIN = 10;
 	
@@ -682,9 +677,9 @@ function restrictBoundry(block) {
 	}
 	
 	// off the top
-	var overflow = blockXY.y - Blockly.Virtual.Y - MARGIN;
+	var overflow = blockXY.y - Blockly.Virtual.Y  - textHeight - MARGIN;
 	if (overflow < 0) {
-		block.moveBy(0, overflow * -1 + rand);
+		block.moveBy(0, overflow * -1 + rand - textHeight/2);
 	}
 	
 	// off the bottom

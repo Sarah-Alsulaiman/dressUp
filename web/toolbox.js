@@ -17,32 +17,25 @@ function getToolbox() {
       
     toolbox1 += '<category name="+ Shoes"> <block type="shoes1"></block> <block type="shoes2"></block>';
     toolbox1 += '</category> <category> </category>'; //close shoes
+    
+    toolbox1 += '<category name="+ Coloring"> <block type="red"></block> <block type="blue"></block>' + 
+                    '<block type="black"></block> <block type="pink"></block> <block type="grey"></block> <block type="orange"></block> <block type="purple"></block>' +
+                    '<block type="lime"></block> <block type="gold"></block>' ;
+    toolbox1 += '</category> <category> </category>'; //close coloring
       
     toolbox1 += '</xml>';
       
     //------------------------------------------------------------------------------
     var toolbox2 = '<xml> <category></category> ';
     
-    toolbox2 += '<category name="+ Coloring"> <block type="red"></block> <block type="blue"></block>' + 
-                    '<block type="black"></block> <block type="pink"></block> <block type="grey"></block> <block type="orange"></block> <block type="purple"></block>' +
-                    '<block type="lime"></block> <block type="gold"></block>' ;
-    toolbox2 += '</category> <category> </category>'; //close coloring
-      
-    toolbox2 += '  <category name="+ Tops"> <block type="top1"></block> <block type="top2"></block> <block type="top7"></block> ';
+    toolbox2 += '  <category name="+ Tops"> <block type="top1"></block> <block type="top4"></block> <block type="top5"></block> <block type="top7"> </block> <block type="top8"> </block>';
     toolbox2 += '</category> <category> </category>'; //close tops
       
-    toolbox2 += '<category name="+ Bottoms"> <block type="bottom1"></block> <block type="bottom2"></block> <block type="bottom5"></block>';
+    toolbox2 += '<category name="+ Bottoms"> <block type="bottom1"></block> <block type="bottom5"></block>';
       
-      toolbox2 += '</category> <category> </category>'; //close bottoms
+    toolbox2 += '</category> <category> </category>'; //close bottoms
       
-      toolbox2 += '<category name="+ Hair"> <block type="hair1"></block> <block type="hair2"></block> <block type="hair3"></block>';
-      toolbox2 += '</category> <category> </category>'; //close hair
-      
-      toolbox2 += '<category name="+ Shoes"> <block type="shoes1"></block> <block type="shoes2"></block> <block type="shoes3"></block>';
-      toolbox2 += '</category> <category> </category>'; //close shoes
-      
-     
-      toolbox2 += '</xml>';
+    toolbox2 += '</xml>';
       
       //------------------------------------------------------------------------------
       var toolbox4 = '<xml> <category></category> ';
@@ -126,15 +119,12 @@ function getToolbox() {
       toolbox3 += '<category name = "+ Repeat"> <block type="control_repeat"></block>';
       toolbox3 += '</category> <category> </category>'; //close repeat
       
-      toolbox3 += '<category name="+ Bottoms"> <block type="bottom1"></block> <block type="bottom5"></block> <block type="bottom7"></block>';
+      toolbox3 += '  <category name="+ Tops"> <block type="top1"></block> <block type="top4"></block> <block type="top5"></block> <block type="top7"> </block> <block type="top8"> </block>';
+      toolbox3 += '</category> <category> </category>'; //close tops
+      
+      toolbox3 += '<category name="+ Bottoms"> <block type="bottom1"></block> <block type="bottom5"></block>';
       
       toolbox3 += '</category> <category> </category>'; //close bottoms
-      
-      toolbox3 += '<category name="+ Hair"> <block type="hair1"></block> <block type="hair2"></block> <block type="hair3"></block> <block type="hair4"></block> <block type="hair5"></block>';
-      toolbox3 += '</category> <category> </category>'; //close hair
-      
-      toolbox3 += '<category name="+ Shoes"> <block type="shoes1"></block> <block type="shoes2"></block> <block type="shoes3"></block> <block type="shoes4"></block> <block type="shoes5"></block>';
-      toolbox3 += '</category> <category> </category>'; //close shoes
       
       toolbox3 += '</xml>';
       

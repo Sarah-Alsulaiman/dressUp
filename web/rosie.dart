@@ -56,9 +56,9 @@ bool REPEAT_SKIRT = false;
 bool REPEAT_SKIRT_SHORT = false;
 
 //format [ [blockName, value, levels] ]
-List blocks = [  ['repeat', false, 3], ['black', false, 3], ['grey', false, 3],  ['blue', false, 3], 
-                 ['top', false, 1, 2, 4, 5, 6], ['bottom', false, 1, 2, 3, 4, 5, 6], 
-                 ['top_purple', false, 2], ['bottom_purple', false, 2],
+List blocks = [  ['repeat', false, 3], ['black', false, 2, 3],  ['blue', false, 2, 3], 
+                 ['top', false, 1, 4, 5, 6], ['bottom', false, 1, 2, 3, 4, 5, 6], 
+                 ['top_purple', false, 0], ['bottom_purple', false, 0],
                  ['abstraction', false, 5, 6], ['call', false, 5, 6], ['func', false, 5, 6],
                  ['other', false, 4, 6], ['then', false, 4, 6],
                  ['color', false], ['get', false],['weather', false, 4],  ['going', false, 0], ['if', false, 4, 6],
@@ -74,6 +74,9 @@ String ERROR_THEN = '';
 String ERROR_OTHER = '';
 String ERROR_BLOCK = '';
 bool procedure_wedding = false;
+
+int JEANS_COUNT = 0;
+int SKIRT_COUNT = 0;
 
 bool bg_wedding = false;
 bool bg_gym = false;
@@ -121,25 +124,25 @@ void main() {
   
   block_name['repeat'] = 0;
   block_name['black'] = 1;
-  block_name['grey'] = 2;
-  block_name['blue'] = 3;
+  //block_name['grey'] = 2;
+  block_name['blue'] = 2;
   
-  block_name['top'] = 4;
-  block_name['bottom'] = 5;
-  block_name['top_purple'] = 6;
-  block_name['bottom_purple'] = 7;
+  block_name['top'] = 3;
+  block_name['bottom'] = 4;
+  block_name['top_purple'] = 5;
+  block_name['bottom_purple'] = 6;
   
-  block_name['abstraction'] = 8;
-  block_name['call'] = 9;
-  block_name['func'] = 10;
+  block_name['abstraction'] = 7;
+  block_name['call'] = 8;
+  block_name['func'] = 9;
   
-  block_name['other'] = 11;
-  block_name['then'] = 12;
-  block_name['color'] = 13;
-  block_name['get'] = 14;
-  block_name['weather'] = 15;
-  block_name['going'] = 16;
-  block_name['if'] = 17;
+  block_name['other'] = 10;
+  block_name['then'] = 11;
+  block_name['color'] = 12;
+  block_name['get'] = 13;
+  block_name['weather'] = 14;
+  block_name['going'] = 15;
+  block_name['if'] = 16;
  
   text['repeat'] = "Rosie wants to repeat the process, <br> choose a block to repeat over and over again<br>";
   text['black'] = "Make sure you add a long skirt block!";
@@ -169,10 +172,13 @@ void main() {
   
   text['place'] = 'Remember, you can use the shortcut when going to a wedding';
   
-  text['count'] = 'Remember, Rosie wants to repeat 3 times!';
+  text['count'] = 'Remember, Rosie wants to repeat 6 times!';
   
   text['repeat_stack'] = "You didn't choose anything to repeat, please place the blocks inside the repeat block";
-  text['repeat_light'] = "Remember, the bottom block needs to be repeated!"; 
+  text['repeat_jeans'] = "Remember, the long jeans needs to be repeated!"; 
+  text['repeat_skirt'] = "Remember, the long skirt needs to be repeated!"; 
+  
+  text['manual_repeat'] = "Remember, you need to dress Rosie the long jeans then the long skirt three times in a row!";
   
 }
 
@@ -189,6 +195,8 @@ void compile(String json) {
   procedure_wedding = false;
   check_input = true;
   
+  JEANS_COUNT = 0;
+  SKIRT_COUNT = 0;
   //hideAll();          //for option1
   //prepareCanvas();  //for option2
   //removeAll();      //for option3
@@ -218,6 +226,12 @@ void compile(String json) {
   if (ERR_MSG.isEmpty) {
     validate();
     if (check_input) {
+      if (CURRENT_LEVEL == "2") {
+        if (JEANS_COUNT.toString() != "3" || SKIRT_COUNT.toString() != "3") {
+          ERR_MSG = 'manual_repeat';
+          check_input = false;
+        }
+      }
       if (ERROR_THEN.isNotEmpty) {
         ERR_MSG = ERROR_THEN;
         check_input = false;
@@ -312,24 +326,24 @@ void interpret (List commands, bool consider) {
           blocks[block_name['top']][1]= true; //print("TOP block now true"); 
           if (part == "top2-") { 
             blocks[block_name['bottom']][1]= true; //assume we already have a bottom if this is a dress
-            if (color == "purple") {
+            /*if (color == "purple") {
               blocks[block_name['top_purple']][1]= true;
               blocks[block_name['bottom_purple']][1]= true;
-            }
+            }*/
             
           } 
-          if (color == "purple")  blocks[block_name['top_purple']][1]= true;
-          else blocks[block_name['top_purple']][1] = false;
+          //if (color == "purple")  blocks[block_name['top_purple']][1]= true;
+          //else blocks[block_name['top_purple']][1] = false;
         }
           
         else if (part.startsWith("bottom") && consider) {
           blocks[block_name['bottom']][1]= true; //print("BOTTOM block now true"); 
           
           if (color == "purple")  blocks[block_name['bottom_purple']][1]= true;
-          else if (color == "grey") blocks[block_name['grey']][1] = true;
-          else if (color == "blue") {blocks[block_name['blue']][1] = true;}
-          else if (color == "black") {blocks[block_name['black']][1] = true;} 
-          else blocks[block_name['bottom_purple']][1] = false;
+          //else if (color == "grey") blocks[block_name['grey']][1] = true;
+          else if (color == "blue") {blocks[block_name['blue']][1] = true; JEANS_COUNT += 1; print("JEANS COUNT = " + JEANS_COUNT.toString());}
+          else if (color == "black") {blocks[block_name['black']][1] = true; SKIRT_COUNT += 1;} 
+          //else blocks[block_name['bottom_purple']][1] = false;
           
           if (LIGHTS_CHECK && color == "blue") { //came from repeat processing
             REPEAT_JEANS = true;
@@ -337,12 +351,7 @@ void interpret (List commands, bool consider) {
           if (LIGHTS_CHECK && color == "black") { //came from repeat processing
             REPEAT_SKIRT = true;
           }
-          if (LIGHTS_CHECK && color == "grey") { //came from repeat processing
-            REPEAT_SKIRT_SHORT = true;
-          }
-          
         }
-        
         checkProperClothing(nested);
         
         if (consider) { outfits.add(outfit); }
@@ -442,9 +451,8 @@ checkProperClothing(nested) {
             }
           
           }
-  
-  
 }
+
 //--------------------------------------------------------------------------
 // Repeat block
 //--------------------------------------------------------------------------
@@ -454,12 +462,12 @@ void processRepeat(List nested, bool consider) {
   var block = nested[3];
   var outfit;
   
-  blocks[block_name['repeat']][1] = true; print("repeat FOUND");
-  if (count != 3 && CURRENT_LEVEL == "3") {
+  blocks[block_name['repeat']][1] = true;
+  if (count != 6 && CURRENT_LEVEL == "3") {
     ERR_MSG = 'count';
   }
   
-  //verify loop has bottons inside
+  //verify loop has bottoms inside
   //print(block.length);
   for (var i=0; i < count; i++) {
     if (consider) {
@@ -472,8 +480,11 @@ void processRepeat(List nested, bool consider) {
   }
   
   if (CURRENT_LEVEL == "3") {
-    if (!REPEAT_JEANS || !REPEAT_SKIRT || !REPEAT_SKIRT_SHORT) {
-      ERR_MSG = 'repeat_light'; 
+    if (!REPEAT_JEANS) {
+      ERR_MSG = 'repeat_jeans'; 
+    }
+    if (!REPEAT_SKIRT) {
+      ERR_MSG = 'repeat_skirt';
     }
     if (block.length < 1) { ERR_MSG = 'repeat_stack'; } 
   }
@@ -629,7 +640,7 @@ void clearBlocks() {
   
   blocks[block_name['repeat']][1] = false;
   blocks[block_name['black']][1] = false;
-  blocks[block_name['grey']][1] = false;
+  //blocks[block_name['grey']][1] = false;
   blocks[block_name['blue']][1] = false;
   
   blocks[block_name['top']][1] = false;
