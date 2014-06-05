@@ -1,7 +1,7 @@
 goog.provide('Blockly.Virtual');
 function UpdateBlocklyCode() {
 	Blockly.Virtual.Width = 280;
-	Blockly.Virtual.Height = 670;
+	Blockly.Virtual.Height = 690;
 	Blockly.Virtual.X = 600;
 	Blockly.Virtual.Y = 20;
 		
@@ -595,14 +595,16 @@ Blockly.BlockSvg.prototype.renderDrawLeft_ = function(steps, highlightSteps,
 		    rect.setAttribute('width',Blockly.Virtual.Width);
 		    rect.setAttribute('height',Blockly.Virtual.Height);
 		    rect.setAttribute('fill','#95B3D7');
-		    rect.setAttribute('stroke', 'pink');
+		    rect.setAttribute('stroke', '#000080');
 		    rect.setAttribute('stroke-width', 5);
 		    svg.appendChild(rect);
 		    
 		    var text = document.createElementNS(svgNS, 'text');
 			text.setAttribute('x', Blockly.Virtual.X + 50);
 			text.setAttribute('y', Blockly.Virtual.Y + 50);
-			text.setAttribute('fill', '#000');
+			text.setAttribute('fill', '#999999');
+			text.setAttribute('stroke', '#000000');
+			text.setAttribute('font-size', '40px');
 			text.textContent = 'Definitions';
 			svg.appendChild(text);
 		    
