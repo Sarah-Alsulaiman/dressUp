@@ -12,8 +12,8 @@ function init() {
 	populate();
 	
 	// 3. Inject Blockly
-	controlTooltip();
-	//controlTooltip2();
+	//controlTooltip();
+	controlTooltip2();
 	inject();
 }
 
@@ -76,6 +76,8 @@ function logParse(type, key, comment) {
 	
 	var CURRENT_BG = 'room';
 	var Zindex = 3;
+	
+	var maxBlocks = ["infinity", "infinity", "4", "infinity", "infinity", "infinity", "infinity"];
 	
 //------------------------------------------------------------------------------------------
 // Add Event Listener
@@ -476,7 +478,7 @@ function workspaceToText () {
 function inject() {
 	var toolbox = getToolbox();
 	
-	Blockly.inject(document.getElementById('rosie-code'), {path: 'blockly/', toolbox: toolbox[CURRENT_LEVEL - 1], collapse: false, scrollbars: false } );
+	Blockly.inject(document.getElementById('rosie-code'), {path: 'blockly/', toolbox: toolbox[CURRENT_LEVEL - 1], collapse: false, maxBlocks: maxBlocks[CURRENT_LEVEL - 1] } );
 	
 	switch(CURRENT_LEVEL) {
 		case 1:
