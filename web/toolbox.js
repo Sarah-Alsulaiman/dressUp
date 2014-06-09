@@ -63,24 +63,7 @@ function getToolbox() {
       //------------------------------------------------------------------------------
       var toolbox5 = '<xml> <category></category> ';
       
-      toolbox5 += '<category name="+ Coloring"> <block type="red"></block> <block type="blue"></block>' + 
-                    '<block type="black"></block> <block type="pink"></block> <block type="grey"></block> <block type="orange"></block> <block type="purple"></block>' +
-                    '<block type="lime"></block> <block type="gold"></block>' ;
-      toolbox5 += '</category> <category> </category>'; //close coloring
-      
-      
-      toolbox5 += '  <category name="+ Tops"> <block type="top2"></block> <block type="top1"></block> <block type="top4"></block> <block type="top5"></block> <block type="top7"></block>';
-      toolbox5 += '</category> <category> </category>'; //close tops
-      
-      toolbox5 += '<category name="+ Bottoms"> <block type="bottom1"></block> <block type="bottom2"></block> <block type="bottom5"></block> <block type="bottom7"></block>';
-      
-      toolbox5 += '</category> <category> </category>'; //close bottoms
-      
-      toolbox5 += '<category name="+ Hair"> <block type="hair1"></block> <block type="hair2"></block> <block type="hair3"></block> <block type="hair4"></block> <block type="hair5"></block>';
-      toolbox5 += '</category> <category> </category>'; //close hair
-      
-      toolbox5 += '<category name="+ Shoes"> <block type="shoes1"></block> <block type="shoes2"></block> <block type="shoes3"></block> <block type="shoes4"></block> <block type="shoes5"></block>';
-      toolbox5 += '</category> <category> </category>'; //close shoes
+     
        
       toolbox5 += '</xml>';
       

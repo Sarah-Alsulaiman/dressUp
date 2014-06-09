@@ -1001,7 +1001,7 @@ Blockly.Language.procedures_defnoreturn = {
     this.setColour(230, .45, .65);
     //this.movable = false;
     var name = Blockly.Procedures.findLegalName(
-        "Name", this);
+        "Add name here", this);
     this.appendDummyInput()
     	.appendTitle("Look shortcut: ")
         .appendTitle(new Blockly.FieldTextInput(name,
@@ -1164,7 +1164,7 @@ Blockly.Language.procedures_mutatorcontainer = {
     this.appendDummyInput()
         .appendTitle(Blockly.LANG_PROCEDURES_MUTATORCONTAINER_TITLE);
     this.appendStatementInput('STACK');
-    this.setTooltip('');
+    //this.setTooltip('');
     this.contextMenu = false;
   }
 };
@@ -1178,7 +1178,7 @@ Blockly.Language.procedures_mutatorarg = {
         .appendTitle(new Blockly.FieldTextInput('x', this.validator), 'NAME');
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setTooltip('');
+    //this.setTooltip('');
     this.contextMenu = false;
   }
 };
@@ -1201,7 +1201,7 @@ Blockly.Language.procedures_callnoreturn = {
         .appendTitle(Blockly.LANG_PROCEDURES_CALLNORETURN_PROCEDURE, 'NAME');
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setTooltip(Blockly.LANG_PROCEDURES_CALLNORETURN_TOOLTIP);
+    //this.setTooltip(Blockly.LANG_PROCEDURES_CALLNORETURN_TOOLTIP);
     
     this.arguments_ = [];
     this.quarkConnections_ = null;
