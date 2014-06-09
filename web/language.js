@@ -1010,7 +1010,7 @@ Blockly.Language.procedures_defnoreturn = {
     this.appendStatementInput('STACK')
         .appendTitle("");
    // this.setMutator(new Blockly.Mutator(['procedures_mutatorarg']));
-    this.setTooltip(Blockly.LANG_PROCEDURES_DEFNORETURN_TOOLTIP);
+    //this.setTooltip(Blockly.LANG_PROCEDURES_DEFNORETURN_TOOLTIP);
     this.arguments_ = [];
   },
   updateParams_: function() {
