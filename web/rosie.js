@@ -42,11 +42,11 @@ function logParse(type, key, comment) {
 	var MIN_LEVEL = 1;
 	var CURRENT_LEVEL = getLevel();
 	var LEVELS_MSG = ["<br>Rosie is going to a resturant with her friend, Jasmin. Help her decide what to wear.<BR><BR>",
-                        "<br>Jasmin is daring Rosie to wear a long jeans then change to a long skirt, and then change back to a long jeans again then change to a long skirt three times in a row, Can you help Rosie accomplish this?",
+                        "<br>Jasmin is daring Rosie to wear a long jeans then change to a long skirt, and then change back to a long jeans then wear to a long skirt 3 times in a row, Can you help Rosie accomplish this?",
                         "<br>Jasmin is daring Rosie to do it 6 times in a row using only four blocks, can you help Rosie?",
                         "<br>Rosie wants to go out for a walk. Can you help Rosie choose what to wear so that when it's hot outside, she would wear a t-shirt, and when it is cold outside she would wear a jacket?",
                         "<br>Now, instead of choosing a new look each level, you can create a shortcut to a certain look and use it in later levels. You can give this look a name and you'll ba able to use it later!",
-                        "Can you dress Rosie so that when she is going to her sister's wedding, she would have the look <p>" + sessionStorage.UserLook + "</p> and when she is going to a gym, she would wear gym outfit?",
+                        "Can you dress Rosie so that when she is going to a wedding, she would have the look <p>" + sessionStorage.UserLook + "</p> and when she is going to a gym, she would wear gym outfit?",
                         "<br>Play with the blocks as you like! <br><br>"
                        ];
 	// Rosie wore a top that is either black or purple, when she wears a black top, she doesn't want to wear a black bottom, otherwise she wants the bottom to be black. Pick a bottom so that she doesn't wear all black (Hint: check new blocks in the control section!)
@@ -55,8 +55,8 @@ function logParse(type, key, comment) {
 	var Playing = false;
     
 	var HAIR_IMAGES = 7;
-	var TOP_IMAGES = 9;
-	var BOTTOM_IMAGES = 9;
+	var TOP_IMAGES = 8;
+	var BOTTOM_IMAGES = 7;
 	var SHOE_IMAGES = 6;
 	
 	var LogRequest = false;
@@ -127,7 +127,7 @@ function populate() {
 		
 		for (var j=0; j < COLORS.length; j++ ) {
 			appendImg('top', i, COLORS[j]);
-			appendImg('bottom', i, COLORS[j]);
+			i < BOTTOM_IMAGES? appendImg('bottom', i, COLORS[j]): null;
 			i < SHOE_IMAGES? appendImg('shoes', i, COLORS[j]): null;
         }
     }
@@ -243,7 +243,6 @@ function processEvent(event) {
 	    
 		else if (msgPart[1] == "outfit"){	 // received an outfit to display
 			var outfit = msgPart[2];
-			console.log(outfit);
 			setHtmlVisibility(outfit, true);
 			Blockly.mainWorkspace.highlightBlock2(msgPart[3], true);
 			if (outfit == "REPEAT") {
@@ -486,15 +485,20 @@ function inject() {
 			fadeOutAfterDelay("hint1", 5000);
 		break;
 	  	
+	  	case 3:
+		  	setHtmlVisibility('top7-red', true);
+		  	setHtmlVisibility('hair4-', true);
+		  	setHtmlVisibility('shoes5-gold', true);
+		  	loadBlocks(CURRENT_LEVEL);
+      	break;
+      	
 		case 4:
 		  	setHtmlVisibility('bottom1-pink', true);
+		  	setHtmlVisibility('hair5-', true);
 		  	loadBlocks(CURRENT_LEVEL);
       	break;
       	
       	case 5:
-		  	setHtmlVisibility('top2-gold', true);
-		  	setHtmlVisibility('hair3-', true);
-		  	setHtmlVisibility('shoes2-gold', true);
 		  	loadBlocks(CURRENT_LEVEL);
       	break;
 	
@@ -517,19 +521,19 @@ function inject() {
 //---------------------------------------------------------------------------------------------
 // Load the editor with some blocks                                                                
 //---------------------------------------------------------------------------------------------  
-function loadBlocks (level) {
-	if (level == 3) {
-		var xml = Blockly.Xml.textToDom(      
-				'<xml>' +    
-				'<block type="top5"> </block>' +
-				'</xml>');
-	} else if(level == 4) {
-		var xml = Blockly.Xml.textToDom(      
-				'<xml>' +    
-				'  <block type="bottom1" > <value name="color"> <block type="pink"> </block> </value> </block>' +
-				'</xml>');
-	
-	
+function loadBlocks(level) {
+	if(level == 3) {
+		xml = Blockly.Xml.textToDom(      
+			'<xml>' +    
+			' <block type="top7"></block> ' +
+			'</xml>');
+	}
+	else if(level == 4) {
+		xml = Blockly.Xml.textToDom(      
+			'<xml>' +    
+			' <block type="bottom1"> <value name = "color"> <block type="red"> </block> </value> <next> ' +
+			' <block type="hair5"> </block></block> ' +
+			'</xml>');
 	}
 	else if(level == 5) {
 		xml = Blockly.Xml.textToDom(      

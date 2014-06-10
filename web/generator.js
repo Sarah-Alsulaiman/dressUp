@@ -11,20 +11,20 @@ Blockly.JavaScript.top1 = function() {
 Blockly.JavaScript.top2 = function() {
   var color = Blockly.JavaScript.valueToCode(this, 'color', Blockly.JavaScript.ORDER_NONE) || '0';
 	if (color == '0') {
-		return '[ "top2-", "pink", ' + this.id + ', "hot", "casual" ]';
+		return '[ "top2-", "pink", ' + this.id + ', "any", "wedding" ]';
 	}
 	else {
-		return '[ "top2-",' + color + ', ' + this.id + ', "hot", "casual" ]';
+		return '[ "top2-",' + color + ', ' + this.id + ', "any", "wedding" ]';
 	}
 };
 
 Blockly.JavaScript.top3 = function() {
 	var color = Blockly.JavaScript.valueToCode(this, 'color', Blockly.JavaScript.ORDER_NONE) || '0';
 	if (color == '0') {
-		return '[ "top3-", "red", ' + this.id + ', "hot", "wedding" ]';
+		return '[ "top3-", "red", ' + this.id + ', "any", "casual" ]';
 	}
 	else {
-		return '[ "top3-",' + color + ', ' + this.id + ', "hot", "wedding" ]';
+		return '[ "top3-",' + color + ', ' + this.id + ', "any", "casual" ]';
 	}
 };
 
@@ -41,10 +41,10 @@ Blockly.JavaScript.top4 = function() {
 Blockly.JavaScript.top5 = function() {
 	var color = Blockly.JavaScript.valueToCode(this, 'color', Blockly.JavaScript.ORDER_NONE) || '0';
 	if (color == '0') {
-		return '[ "top5-", "red" , ' + this.id + ', "hot", "wedding" ]';
+		return '[ "top5-", "red" , ' + this.id + ', "any", "casual" ]';
 	}
 	else {
-		return '[ "top5-",' + color + ', ' + this.id + ', "hot", "wedding" ]';
+		return '[ "top5-",' + color + ', ' + this.id + ', "any", "casual" ]';
 	}
 };
 
@@ -61,10 +61,10 @@ Blockly.JavaScript.top6 = function() {
 Blockly.JavaScript.top7 = function() {
 	var color = Blockly.JavaScript.valueToCode(this, 'color', Blockly.JavaScript.ORDER_NONE) || '0';
 	if (color == '0') {
-		return '[ "top7-", "red" , ' + this.id + ', "hot", "wedding" ]';
+		return '[ "top7-", "red" , ' + this.id + ', "any", "casual" ]';
 	}
 	else {
-		return '[ "top7-",' + color + ', ' + this.id + ', "hot", "wedding" ]';
+		return '[ "top7-",' + color + ', ' + this.id + ', "any", "casual" ]';
 	}
 };
 
@@ -104,10 +104,10 @@ Blockly.JavaScript.bottom2 = function() {
 Blockly.JavaScript.bottom3 = function() {
   var color = Blockly.JavaScript.valueToCode(this, 'color', Blockly.JavaScript.ORDER_NONE) || '0';
 	if (color == '0') {
-		return '[ "bottom3-", "red", ' + this.id + ', "any", "wedding" ]';
+		return '[ "bottom3-", "red", ' + this.id + ', "any", "casual" ]';
 	}
 	else {
-		return '[ "bottom3-",' + color + ', ' + this.id + ', "any", "wedding" ]';
+		return '[ "bottom3-",' + color + ', ' + this.id + ', "any", "casual" ]';
 	}
 };
 
@@ -124,10 +124,10 @@ Blockly.JavaScript.bottom4 = function() {
 Blockly.JavaScript.bottom5 = function() {
   var color = Blockly.JavaScript.valueToCode(this, 'color', Blockly.JavaScript.ORDER_NONE) || '0';
 	if (color == '0') {
-		return '[ "bottom5-", "black" , ' + this.id + ', "any", "wedding"]';
+		return '[ "bottom5-", "black" , ' + this.id + ', "any", "casual"]';
 	}
 	else {
-		return '[ "bottom5-",' + color + ', ' + this.id + ', "any", "wedding"]';
+		return '[ "bottom5-",' + color + ', ' + this.id + ', "any", "casual"]';
 	}
 };
 
@@ -185,10 +185,10 @@ Blockly.JavaScript.shoes2 = function() {
 Blockly.JavaScript.shoes3 = function() {
   var color = Blockly.JavaScript.valueToCode(this, 'color', Blockly.JavaScript.ORDER_NONE) || '0';
 	if (color == '0') {
-		return '[ "shoes3-", "grey", ' + this.id + ', "cold", "casual" ]';
+		return '[ "shoes3-", "grey", ' + this.id + ', "any", "casual" ]';
 	}
 	else {
-		return '[ "shoes3-",' + color + ', ' + this.id + ', "cold", "casual" ]';
+		return '[ "shoes3-",' + color + ', ' + this.id + ', "any", "casual" ]';
 	}
 };
 

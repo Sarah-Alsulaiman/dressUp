@@ -61,7 +61,7 @@ Blockly.Language.top3 = {
     this.setColour(330, .45, .65);
     this.appendValueInput("color")
         .setCheck([String, "var"])
-        .appendTitle("dress top")
+        .appendTitle("V-neck shirt")
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     var thisBlock = this; 
@@ -278,7 +278,7 @@ Blockly.Language.bottom3 = {
     this.setColour(330, .45, .65);
     this.appendValueInput("color")
         .setCheck([String, "var"])
-        .appendTitle("dress bottom")
+        .appendTitle("shorts")
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     var thisBlock = this; 
@@ -305,7 +305,7 @@ Blockly.Language.bottom4 = {
     this.setColour(330, .45, .65);
     this.appendValueInput("color")
         .setCheck([String, "var"])
-        .appendTitle("trouser pants")
+        .appendTitle("short skirt")
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     var thisBlock = this; 
@@ -467,7 +467,7 @@ Blockly.Language.shoes2 = {
     this.setColour(330, .45, .65);
     this.appendValueInput("color")
         .setCheck([String, "var"])
-        .appendTitle("Heels")
+        .appendTitle("glitter shoes")
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     var thisBlock = this; 
@@ -1001,7 +1001,7 @@ Blockly.Language.procedures_defnoreturn = {
     this.setColour(230, .45, .65);
     //this.movable = false;
     var name = Blockly.Procedures.findLegalName(
-        "Add name here", this);
+        "Type Name..", this);
     this.appendDummyInput()
     	.appendTitle("Look shortcut: ")
         .appendTitle(new Blockly.FieldTextInput(name,
