@@ -7,7 +7,7 @@ Blockly.Language.top1 = {
     this.setColour(330, .45, .65);
     this.appendValueInput("color")
         .setCheck([String, "var"])
-        .appendTitle("T-shirt")
+        .appendTitle("       T-shirt        ")
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     var thisBlock = this; 
@@ -34,7 +34,7 @@ Blockly.Language.top2 = {
     this.setColour(330, .45, .65);
     this.appendValueInput("color")
         .setCheck([String, "var"])
-        .appendTitle("Wedding dress")
+        .appendTitle("Wedding dress ")
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     var thisBlock = this; 
@@ -61,7 +61,7 @@ Blockly.Language.top3 = {
     this.setColour(330, .45, .65);
     this.appendValueInput("color")
         .setCheck([String, "var"])
-        .appendTitle("V-neck shirt")
+        .appendTitle("   V-neck shirt    ")
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     var thisBlock = this; 
@@ -88,7 +88,7 @@ Blockly.Language.top4 = {
     this.setColour(330, .45, .65);
     this.appendValueInput("color")
         .setCheck([String, "var"])
-        .appendTitle("jacket")
+        .appendTitle("        Jacket         ")
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     var thisBlock = this; 
@@ -115,7 +115,7 @@ Blockly.Language.top5 = {
     this.setColour(330, .45, .65);
     this.appendValueInput("color")
         .setCheck([String, "var"])
-        .appendTitle("formal top")
+        .appendTitle("     Formal top     ")
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     var thisBlock = this; 
@@ -142,7 +142,7 @@ Blockly.Language.top6 = {
     this.setColour(330, .45, .65);
     this.appendValueInput("color")
         .setCheck([String, "var"])
-        .appendTitle("gym top")
+        .appendTitle("      Gym top       ")
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     var thisBlock = this; 
@@ -169,7 +169,7 @@ Blockly.Language.top7 = {
     this.setColour(330, .45, .65);
     this.appendValueInput("color")
         .setCheck([String, "var"])
-        .appendTitle("blouse")
+        .appendTitle("       Blouse        ")
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     var thisBlock = this; 
@@ -224,7 +224,7 @@ Blockly.Language.bottom1 = {
     this.setColour(330, .45, .65);
     this.appendValueInput("color")
         .setCheck([String, "var"])
-        .appendTitle("long jeans")
+        .appendTitle("     Long jeans    ")
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     var thisBlock = this; 
@@ -251,7 +251,7 @@ Blockly.Language.bottom2 = {
     this.setColour(330, .45, .65);
     this.appendValueInput("color")
         .setCheck([String, "var"])
-        .appendTitle("Legging")
+        .appendTitle("      Legging       ")
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     var thisBlock = this; 
@@ -278,7 +278,7 @@ Blockly.Language.bottom3 = {
     this.setColour(330, .45, .65);
     this.appendValueInput("color")
         .setCheck([String, "var"])
-        .appendTitle("shorts")
+        .appendTitle("        Shorts       ")
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     var thisBlock = this; 
@@ -305,7 +305,7 @@ Blockly.Language.bottom4 = {
     this.setColour(330, .45, .65);
     this.appendValueInput("color")
         .setCheck([String, "var"])
-        .appendTitle("short skirt")
+        .appendTitle("     Short skirt    ")
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     var thisBlock = this; 
@@ -332,7 +332,7 @@ Blockly.Language.bottom5 = {
     this.setColour(330, .45, .65);
     this.appendValueInput("color")
         .setCheck([String, "var"])
-        .appendTitle("long skirt")
+        .appendTitle("     Maxi skirt     ")
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     var thisBlock = this; 
@@ -359,7 +359,7 @@ Blockly.Language.bottom6 = {
     this.setColour(330, .45, .65);
     this.appendValueInput("color")
         .setCheck([String, "var"])
-        .appendTitle("gym bottom")
+        .appendTitle("    Gym bottom   ")
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     var thisBlock = this; 
@@ -378,60 +378,6 @@ Blockly.Language.bottom6 = {
 };
 
 //-------------------------------------------------------------------------
-// Bottom7
-//-------------------------------------------------------------------------
-Blockly.Language.bottom7 = {
-  helpUrl: 'http://www.example.com/',
-  init: function() {
-    this.setColour(330, .45, .65);
-    this.appendValueInput("color")
-        .setCheck([String, "var"])
-        .appendTitle("short skirt")
-    this.setPreviousStatement(true);
-    this.setNextStatement(true);
-    var thisBlock = this; 
-    this.setTooltip( function() {
-      					var color = Blockly.JavaScript.valueToCode(thisBlock, 'color', Blockly.JavaScript.ORDER_NONE) || '0';
-      					if (color == '0')
-      						return 'bottom7-grey';
-      					else {
-      						color = color.replace(/"/g, "").replace(/\(/g, "").replace(/\)/g, "");
-      						return 'bottom7-'+ color;
-      					}
-      				
-    				}
-				   );
-  }
-};
-
-//-------------------------------------------------------------------------
-// Bottom8
-//-------------------------------------------------------------------------
-Blockly.Language.bottom8 = {
-  helpUrl: 'http://www.example.com/',
-  init: function() {
-    this.setColour(330, .45, .65);
-    this.appendValueInput("color")
-        .setCheck([String, "var"])
-        .appendTitle("short jeans")
-    this.setPreviousStatement(true);
-    this.setNextStatement(true);
-    var thisBlock = this; 
-    this.setTooltip( function() {
-      					var color = Blockly.JavaScript.valueToCode(thisBlock, 'color', Blockly.JavaScript.ORDER_NONE) || '0';
-      					if (color == '0')
-      						return 'bottom8-blue';
-      					else {
-      						color = color.replace(/"/g, "").replace(/\(/g, "").replace(/\)/g, "");
-      						return 'bottom8-'+ color;
-      					}
-      				
-    				}
-				   );
-  }
-};
-
-//-------------------------------------------------------------------------
 // shoes1
 //-------------------------------------------------------------------------
 Blockly.Language.shoes1 = {
@@ -440,7 +386,7 @@ Blockly.Language.shoes1 = {
     this.setColour(330, .45, .65);
     this.appendValueInput("color")
         .setCheck([String, "var"])
-        .appendTitle("flats")
+        .appendTitle("         Flats        ")
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     var thisBlock = this; 
@@ -467,7 +413,7 @@ Blockly.Language.shoes2 = {
     this.setColour(330, .45, .65);
     this.appendValueInput("color")
         .setCheck([String, "var"])
-        .appendTitle("glitter shoes")
+        .appendTitle("  Glitter shoes  ")
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     var thisBlock = this; 
@@ -494,7 +440,7 @@ Blockly.Language.shoes3 = {
     this.setColour(330, .45, .65);
     this.appendValueInput("color")
         .setCheck([String, "var"])
-        .appendTitle("Boots")
+        .appendTitle("        Boots       ")
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     var thisBlock = this; 
@@ -521,7 +467,7 @@ Blockly.Language.shoes4 = {
     this.setColour(330, .45, .65);
     this.appendValueInput("color")
         .setCheck([String, "var"])
-        .appendTitle("Sneakers")
+        .appendTitle("     Sneakers    ")
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     var thisBlock = this; 
@@ -548,7 +494,7 @@ Blockly.Language.shoes5 = {
     this.setColour(330, .45, .65);
     this.appendValueInput("color")
         .setCheck([String, "var"])
-        .appendTitle("Sandals")
+        .appendTitle("     Sandals       ")
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     var thisBlock = this; 
@@ -574,7 +520,7 @@ Blockly.Language.hair1 = {
   init: function() {
     this.setColour(330, .45, .65);
     this.appendDummyInput()
-    	.appendTitle("Brunette")
+    	.appendTitle("       Brunette       ")
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     var thisBlock = this; 
@@ -591,7 +537,7 @@ Blockly.Language.hair2 = {
   init: function() {
     this.setColour(330, .45, .65);
     this.appendDummyInput()
-    	.appendTitle("Blonde")
+    	.appendTitle("        Blonde        ")
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     var thisBlock = this; 
@@ -608,7 +554,7 @@ Blockly.Language.hair3 = {
   init: function() {
     this.setColour(330, .45, .65);
     this.appendDummyInput()
-    	.appendTitle("Wavy style")
+    	.appendTitle("     Wavy style     ")
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     var thisBlock = this; 
@@ -625,7 +571,7 @@ Blockly.Language.hair4 = {
   init: function() {
     this.setColour(330, .45, .65);
     this.appendDummyInput()
-    	.appendTitle("Bony tail")
+    	.appendTitle("      Bony tail        ")
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     var thisBlock = this; 
@@ -642,7 +588,7 @@ Blockly.Language.hair5 = {
   init: function() {
     this.setColour(330, .45, .65);
     this.appendDummyInput()
-    	.appendTitle("Redhead")
+    	.appendTitle("      Redhead       ")
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     var thisBlock = this; 
@@ -658,7 +604,7 @@ Blockly.Language.hair6 = {
   init: function() {
     this.setColour(330, .45, .65);
     this.appendDummyInput()
-    	.appendTitle("Curly")
+    	.appendTitle("        Curly           ")
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     var thisBlock = this; 
@@ -748,7 +694,7 @@ Blockly.Language.red = {
   init: function() {
     this.setColour(14, .95, .86);
     this.appendDummyInput()
-        .appendTitle("Red");
+        .appendTitle("     Red     ");
     this.setOutput(true, String);
     this.setTooltip('');
   },
@@ -766,7 +712,7 @@ Blockly.Language.blue = {
   init: function() {
     this.setColour(230, .45, .65);
     this.appendDummyInput()
-        .appendTitle("Blue");
+        .appendTitle("     Blue    ");
     this.setOutput(true, String);
     this.setTooltip('');
   },
@@ -784,7 +730,7 @@ Blockly.Language.purple = {
   init: function() {
     this.setColour(290, .45, .65);
     this.appendDummyInput()
-        .appendTitle("Purple");
+        .appendTitle("   Purple   ");
     this.setOutput(true, String);
     this.setTooltip('');
   },
@@ -802,7 +748,7 @@ Blockly.Language.lime = {
   init: function() {
     this.setColour(76, .45, .65);
     this.appendDummyInput()
-        .appendTitle("Green");
+        .appendTitle("    Green   ");
     this.setOutput(true, String);
     this.setTooltip('');
   },
@@ -820,7 +766,7 @@ Blockly.Language.black = {
   init: function() {
     //this.setColour(112, .45, .65);
     this.appendDummyInput()
-        .appendTitle("Black");
+        .appendTitle("    Black   ");
     this.setOutput(true, String);
     this.setTooltip('');
   },
@@ -838,7 +784,7 @@ Blockly.Language.gold = {
   init: function() {
     this.setColour(48, .97, .95);
     this.appendDummyInput()
-        .appendTitle("Gold");
+        .appendTitle("     Gold     ");
     this.setOutput(true, String);
     this.setTooltip('');
   },
@@ -856,7 +802,7 @@ Blockly.Language.pink = {
   init: function() {
     this.setColour(348, .3, .98);
     this.appendDummyInput()
-        .appendTitle("pink");
+        .appendTitle("     Pink    ");
     this.setOutput(true, String);
     this.setTooltip('');
   },
@@ -874,7 +820,7 @@ Blockly.Language.orange = {
   init: function() {
     this.setColour(34, .66, .95);
     this.appendDummyInput()
-        .appendTitle("Orange");
+        .appendTitle("  Orange  ");
     this.setOutput(true, String);
     this.setTooltip('');
   },
@@ -892,30 +838,13 @@ Blockly.Language.grey = {
   init: function() {
     this.setColour(240, .10, .61);
     this.appendDummyInput()
-        .appendTitle("Grey");
+        .appendTitle("    Grey    ");
     this.setOutput(true, String);
     this.setTooltip('');
   },
   getName: function() {
   	"";
   },
-};
-
-
-//-------------------------------------------------------------------------
-// color_dress1
-//-------------------------------------------------------------------------
-
-Blockly.Language.color_dress1 = {
-  helpUrl: 'http://www.example.com/',
-  init: function() {
-    this.setColour(290, .45, .65);
-    this.appendDummyInput()
-        .appendTitle("dress1");
-    this.setInputsInline(true);
-    this.setOutput(true, String);
-    this.setTooltip('');
-  }
 };
 
 Blockly.Language.control_repeat = {
@@ -941,7 +870,7 @@ Blockly.Language.control_repeat = {
 Blockly.Language.control_if = {
   helpUrl: 'http://www.example.com/',
   init: function() {
-    this.setColour(34, .66, .95);
+    this.setColour(120, .45, .65);
     this.appendValueInput("CONDITION")
         .setCheck(["input", "going_to", "weather"])
         .setAlign(Blockly.ALIGN_RIGHT)
@@ -963,7 +892,7 @@ Blockly.Language.control_if = {
 Blockly.Language.going_to = {
   helpUrl: 'http://www.example.com/',
   init: function() {
-    this.setColour(34, .66, .95);
+    this.setColour(120, .45, .65);
     this.appendDummyInput()
         .appendTitle("Going To")
         .appendTitle(new Blockly.FieldDropdown([["wedding", "wedding"], ["gym", "gym"]]), "place");
@@ -977,7 +906,7 @@ Blockly.Language.going_to = {
 Blockly.Language.weather = {
   helpUrl: 'http://www.example.com/',
   init: function() {
-    this.setColour(34, .66, .95);
+    this.setColour(120, .45, .65);
     this.appendDummyInput()
         .appendTitle("Weather outside is: ")
         .appendTitle(new Blockly.FieldDropdown([["hot", "hot"], ["cold", "cold"]]), "weather");
