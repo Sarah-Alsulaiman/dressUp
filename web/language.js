@@ -852,9 +852,9 @@ Blockly.Language.control_repeat = {
   init: function() {
     this.setColour(76, .45, .65);
     this.appendDummyInput()
-        .appendTitle("    REPEAT")
+        .appendTitle("      REPEAT")
         .appendTitle(new Blockly.FieldTextInput("5"), "COUNT")
-        .appendTitle("TIMES")
+        .appendTitle("TIMES   ")
     this.appendStatementInput("DO");
     this.appendDummyInput();
     this.setPreviousStatement(true);
@@ -878,6 +878,7 @@ Blockly.Language.control_if = {
     this.appendDummyInput();
     this.appendStatementInput("THEN")
         .appendTitle("    THEN");
+    this.appendDummyInput();
     this.appendDummyInput();
     this.appendStatementInput("ELSE")
         .appendTitle("    ELSE");
@@ -938,6 +939,7 @@ Blockly.Language.procedures_defnoreturn = {
         .appendTitle('', 'PARAMS');
     this.appendStatementInput('STACK')
         .appendTitle("");
+    this.appendDummyInput();
    // this.setMutator(new Blockly.Mutator(['procedures_mutatorarg']));
     //this.setTooltip(Blockly.LANG_PROCEDURES_DEFNORETURN_TOOLTIP);
     this.arguments_ = [];
