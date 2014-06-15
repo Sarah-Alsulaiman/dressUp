@@ -224,7 +224,7 @@ Blockly.Language.bottom1 = {
     this.setColour(330, .45, .65);
     this.appendValueInput("color")
         .setCheck([String, "var"])
-        .appendTitle("     Long jeans    ")
+        .appendTitle("    Long jeans    ")
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     var thisBlock = this; 
@@ -359,7 +359,7 @@ Blockly.Language.bottom6 = {
     this.setColour(330, .45, .65);
     this.appendValueInput("color")
         .setCheck([String, "var"])
-        .appendTitle("    Gym bottom   ")
+        .appendTitle("   Gym bottom   ")
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     var thisBlock = this; 
@@ -413,7 +413,7 @@ Blockly.Language.shoes2 = {
     this.setColour(330, .45, .65);
     this.appendValueInput("color")
         .setCheck([String, "var"])
-        .appendTitle("  Glitter shoes  ")
+        .appendTitle("   Glitter shoes  ")
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     var thisBlock = this; 
