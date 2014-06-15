@@ -341,7 +341,7 @@ void interpret (List commands, bool consider) {
           
           if (color == "purple")  blocks[block_name['bottom_purple']][1]= true;
           //else if (color == "grey") blocks[block_name['grey']][1] = true;
-          else if (color == "blue") {blocks[block_name['blue']][1] = true; JEANS_COUNT += 1; print("JEANS COUNT = " + JEANS_COUNT.toString());}
+          else if (color == "blue") {blocks[block_name['blue']][1] = true; JEANS_COUNT += 1; }
           else if (color == "black") {blocks[block_name['black']][1] = true; SKIRT_COUNT += 1;} 
           //else blocks[block_name['bottom_purple']][1] = false;
           

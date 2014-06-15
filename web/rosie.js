@@ -62,7 +62,6 @@ function logParse(type, key, comment) {
 	var LogRequest = false;
 	
 	var BlocksTotal = 0;
-	
 	var Xposition = 30;
 	var Yposition = 70;
 	
@@ -353,6 +352,9 @@ function workspaceChange() {
  	if (topBlocks.length > BlocksTotal) { //new blocks added
 		//console.log("new block added");
  		BlocksTotal = topBlocks.length;
+ 		//console.log("CURRENTLY: " + BlocksTotal);
+ 		var remaining = maxBlocks[CURRENT_LEVEL - 1] - BlocksTotal;
+ 		popUpRemaining(remaining);
  		procedureNames.length = 0; //clear the list
  		callNames.length = 0;
  		a.length = 0; b.length = 0; diff.length = 0;
@@ -500,6 +502,7 @@ function inject() {
 		break;
 	  	
 	  	case 3:
+	  		popUpRemaining(4);
 		  	setHtmlVisibility('top7-red', true);
 		  	setHtmlVisibility('hair4-', true);
 		  	setHtmlVisibility('shoes5-gold', true);
@@ -523,15 +526,25 @@ function inject() {
 		restoreProcedures();
 		// in LEVEL 4, start listenning to events & add virtual seperator
 		Blockly.mainWorkspace.traceOn();
-		Blockly.mainWorkspace.getCanvas().addEventListener('blocklyWorkspaceChange', workspaceChange, false);
+		
 		Blockly.mainWorkspace.addVirtual();
 		//addVirtual();
 	}
     
     Blockly.addChangeListener(bumpBackBlocks); 
+    Blockly.mainWorkspace.getCanvas().addEventListener('blocklyWorkspaceChange', workspaceChange, false);
 	document.getElementById('full_text_div').innerHTML= LEVELS_MSG[CURRENT_LEVEL - 1];
 }
 
+
+function popUpRemaining (remain) {
+	id = "remaining_hint";
+	el = document.getElementById(id);
+	el.innerHTML= 'Remaining blocks <p>' + remain + '</p>';
+	if (remain ==0 )
+	el.innerHTML= 'Remaining blocks <p>' + remain + '</p> you cannot use any more blocks, if you want to add a block from the menu, drag one of the current blocks to the trash';
+	setHtmlOpacity('remaining_hint', 1.0);
+}
 //---------------------------------------------------------------------------------------------
 // Load the editor with some blocks                                                                
 //---------------------------------------------------------------------------------------------  
