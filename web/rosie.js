@@ -243,13 +243,15 @@ function processEvent(event) {
 	    
 		else if (msgPart[1] == "outfit"){	 // received an outfit to display
 			var outfit = msgPart[2];
-			setHtmlVisibility(outfit, true);
 			Blockly.mainWorkspace.highlightBlock2(msgPart[3], true);
 			if (outfit == "REPEAT") {
-				popUpHint(msgPart);  		
+				popUpHint(msgPart, true);  		
 			}
-		}
-		      
+			else {
+				popUpHint(msgPart, false)
+			}
+			setHtmlVisibility(outfit, true);
+		}  
 	}
 }
 
@@ -276,7 +278,7 @@ function getWorkSpacePosition() {
 //---------------------------------------------------------------------------------------
 // Pop up repeat hint
 //---------------------------------------------------------------------------------------
-function popUpHint(parts) {
+function popUpHint(parts, repeat) {
 	var wsPosition = getWorkSpacePosition();
   	var block = Blockly.mainWorkspace.getBlockById(parts[3]);
 	
@@ -284,14 +286,26 @@ function popUpHint(parts) {
 	var blockXY = block.getRelativeToSurfaceXY();
 	var x = blockXY.x + blockHW.width + wsPosition.left + 10;
 	var y = blockXY.y + wsPosition.top;
+	var el;
+	var id;
 	
-  	var id = "repeat_hint";
-  	var el = document.getElementById(id);
-  	el.innerHTML= 'ROUND <p>' + parts[4] + '</p> out of ' + parts[5];
+	if (repeat) {
+		id = "repeat_hint";
+		el = document.getElementById(id);
+		el.innerHTML= 'ROUND <p>' + parts[4] + '</p> out of ' + parts[5];
+		el.style.top =  y + "px";
+	} else {
+		id = "arrow";
+		el = document.getElementById(id);
+		el.innerHTML= '<img src="images/arrow2.png"> ';
+		y -= 25; //position middle of the arrow to allow tip to reach block
+		el.style.top =  y + "px";
+	}
+  	
   	el.style.top =  y + "px";
   	el.style.left = x + "px";
-  	setHtmlOpacity("repeat_hint", 1.0);
-	fadeOutAfterDelay("repeat_hint", 1000);
+  	setHtmlOpacity(id, 1.0);
+	fadeOutAfterDelay(id, 1100);
 }
   
   
@@ -413,7 +427,7 @@ function sendBlocklyCode(log) {
 		//--------------------------------------------------
 		if (code.length == 0) {
 			setHtmlOpacity("hint1", 1.0);
-		  	fadeOutAfterDelay("hint1", 4000);
+		  	fadeOutAfterDelay("hint1", 6000);
 		  	if(LogRequest) { logParse("preError", "10", "No blocks");}
 		}
 		else {
@@ -423,7 +437,7 @@ function sendBlocklyCode(log) {
 		  	//--------------------------------------------------
 		  	if (!connected) {
 				setHtmlOpacity("hint2", 1.0);
-		            	fadeOutAfterDelay("hint2", 4000);
+		            	fadeOutAfterDelay("hint2", 6000);
 		            	if(LogRequest) { logParse("preError", "11", "blocks not connected");}
 		        } else {
 				//-------------------------------------------------------

@@ -107,7 +107,7 @@ void main() {
       compile(parts[1]);
       if (outfits.length != 0) { Timer.run(() => display(1)); }
       
-      timer = new Timer.periodic(new Duration(milliseconds: 1000), (Timer t) {
+      timer = new Timer.periodic(new Duration(milliseconds: 1200), (Timer t) {
       if (outfits.length == 0) {
         timer.cancel();
         if (check_input) { sendMessage("DONE!"); }
