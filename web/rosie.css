@@ -16,6 +16,16 @@ body {
    background-color: rgba(62, 0, 62, 1); 
 }
 
+#index {
+  text-align: center;
+  margin-top: 5px;
+}
+
+.logo{
+    width:1000px;
+    height: auto;
+}
+
 #title {
   margin-top: 20px;
   margin-left: 550px;
@@ -109,6 +119,17 @@ A:hover {text-decoration: underline; color: rgba(102, 0, 102, .6);}
    z-index: 2147483647;
 }
 
+#start-toolbar {
+   background-color:  #656fa9; 
+   border-radius: 15px;
+   border: 2px solid white;
+   border-color: #cc85a2;
+   width: 200px;
+   z-index: 2147483647;
+   position: absolute;
+   top: 700px;
+   left: 850px;
+}
 
 button {
    outline: none;
@@ -119,11 +140,14 @@ button {
    margin-left: 0px;
    margin-right: 0px;
    display: inline-block;
+   cursor: pointer;
 }
 
 #play-button { background: url("images/showbuttonW.png")  0 no-repeat; background-position: 5px 5px; }
 #play-button:active { background-position: 8px 8px; }
 
+#start-button { background: url("images/play.png")  0 no-repeat; background-position: 5px 5px; }
+#start-button:active { background-position: 8px 8px; }
 
 .background {
   position: absolute;
