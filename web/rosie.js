@@ -43,7 +43,7 @@ function logParse(type, key, comment) {
 	var CURRENT_LEVEL = getLevel();
 	var LEVELS_MSG = ["<br>Rosie is going to a resturant with her friend, Jasmin. Help her decide what to wear.<BR><BR>",
                         "<br>Jasmin is daring Rosie to wear a long jeans then change to a long skirt, and then change back to a long jeans then wear to a long skirt 3 times in a row, Can you help Rosie accomplish this?",
-                        "<br>Jasmin is daring Rosie to do it 6 times in a row using only four blocks, can you help Rosie?",
+                        "<br>Jasmin is daring Rosie to do it 6 times in a row using only six blocks, can you help Rosie?<br><br>",
                         "<br>Rosie wants to go out for a walk. Can you help Rosie choose what to wear so that when it's hot outside, she would wear a t-shirt, and when it is cold outside she would wear a jacket?",
                         "<br>Now, instead of choosing a new look each level, you can create a shortcut to a certain look and use it in later levels. You can give this look a name and you'll ba able to use it later!",
                         "Can you dress Rosie so that when she is going to a wedding, she would have the look \"<p>" + sessionStorage.UserLook + "</p>\" and when she is going to a gym, she would wear gym outfit?<br>",
@@ -76,7 +76,7 @@ function logParse(type, key, comment) {
 	var CURRENT_BG = 'room';
 	var Zindex = 3;
 	
-	var maxBlocks = ["infinity", "infinity", "4", "infinity", "infinity", "infinity", "infinity"];
+	var maxBlocks = ["infinity", "infinity", "6", "infinity", "infinity", "infinity", "infinity"];
 	
 //------------------------------------------------------------------------------------------
 // Add Event Listener
@@ -504,7 +504,7 @@ function inject() {
 	  		popUpRemaining(4);
 		  	setHtmlVisibility('top5-red', true);
 		  	setHtmlVisibility('hair4-', true);
-		  	setHtmlVisibility('shoes5-gold', true);
+		  	setHtmlVisibility('shoes5-lime', true);
 		  	loadBlocks(CURRENT_LEVEL);
       	break;
       	
@@ -554,7 +554,9 @@ function loadBlocks(level) {
 	if(level == 3) {
 		xml = Blockly.Xml.textToDom(      
 			'<xml>' +    
-			' <block type="top5"></block> ' +
+			' <block type="top5"> <next> ' +
+			' <block type="hair4"> <next> ' +
+			' <block type="shoes5"> </block> </block> </block> ' +
 			'</xml>');
 	}
 	else if(level == 4) {
