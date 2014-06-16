@@ -46,7 +46,7 @@ function logParse(type, key, comment) {
                         "<br>Jasmin is daring Rosie to do it 6 times in a row using only four blocks, can you help Rosie?",
                         "<br>Rosie wants to go out for a walk. Can you help Rosie choose what to wear so that when it's hot outside, she would wear a t-shirt, and when it is cold outside she would wear a jacket?",
                         "<br>Now, instead of choosing a new look each level, you can create a shortcut to a certain look and use it in later levels. You can give this look a name and you'll ba able to use it later!",
-                        "Can you dress Rosie so that when she is going to a wedding, she would have the look <p>" + sessionStorage.UserLook + "</p> and when she is going to a gym, she would wear gym outfit?",
+                        "Can you dress Rosie so that when she is going to a wedding, she would have the look \" <p>" + sessionStorage.UserLook + "</p> \" and when she is going to a gym, she would wear gym outfit?<br>",
                         "<br>Play with the blocks as you like! <br><br>"
                        ];
 	// Rosie wore a top that is either black or purple, when she wears a black top, she doesn't want to wear a black bottom, otherwise she wants the bottom to be black. Pick a bottom so that she doesn't wear all black (Hint: check new blocks in the control section!)
@@ -240,14 +240,15 @@ function processEvent(event) {
 			window.setTimeout(function() { advanceLevel(); }, 500);
 		}
 	    
-		else if (msgPart[1] == "outfit"){	 // received an outfit to display
+		else if (msgPart[1] == "outfit"){	 // received an outfit or bg to display
 			var outfit = msgPart[2];
 			Blockly.mainWorkspace.highlightBlock2(msgPart[3], true);
 			if (outfit == "REPEAT") {
 				popUpHint(msgPart, true);  		
 			}
 			else {
-				popUpHint(msgPart, false)
+				popUpHint(msgPart, false);
+				
 			}
 			setHtmlVisibility(outfit, true);
 		}  
@@ -280,31 +281,30 @@ function getWorkSpacePosition() {
 function popUpHint(parts, repeat) {
 	var wsPosition = getWorkSpacePosition();
   	var block = Blockly.mainWorkspace.getBlockById(parts[3]);
-	
-	var blockHW = block.getHeightWidth();
-	var blockXY = block.getRelativeToSurfaceXY();
-	var x = blockXY.x + blockHW.width + wsPosition.left + 10;
-	var y = blockXY.y + wsPosition.top;
-	var el;
-	var id;
-	
-	if (repeat) {
-		id = "repeat_hint";
-		el = document.getElementById(id);
-		el.innerHTML= 'ROUND <p>' + parts[4] + '</p> out of ' + parts[5];
-		el.style.top =  y + "px";
-	} else {
-		id = "arrow";
-		el = document.getElementById(id);
-		el.innerHTML= '<img src="images/arrow2.png"> ';
-		y -= 25; //position middle of the arrow to allow tip to reach block
-		el.style.top =  y + "px";
+	if (block) {
+		var blockHW = block.getHeightWidth();
+		var blockXY = block.getRelativeToSurfaceXY();
+		var x = blockXY.x + blockHW.width + wsPosition.left + 10;
+		var y = blockXY.y + wsPosition.top;
+		var el;
+		var id;
+		if (repeat) {
+			id = "repeat_hint";
+			el = document.getElementById(id);
+			el.innerHTML= 'ROUND <p>' + parts[4] + '</p> out of ' + parts[5];
+			el.style.top =  y + "px";
+		} else {
+			id = "arrow";
+			el = document.getElementById(id);
+			el.innerHTML= '<img src="images/arrow2.png"> ';
+			y -= 25; //position middle of the arrow to allow tip to reach block
+			el.style.top =  y + "px";
+		}
+	  	el.style.top =  y + "px";
+	  	el.style.left = x + "px";
+	  	setHtmlOpacity(id, 1.0);
+		fadeOutAfterDelay(id, 1100);
 	}
-  	
-  	el.style.top =  y + "px";
-  	el.style.left = x + "px";
-  	setHtmlOpacity(id, 1.0);
-	fadeOutAfterDelay(id, 1100);
 }
   
   
@@ -349,12 +349,13 @@ function workspaceChange() {
 	var callNames = [];
  	var a = []; var b = []; var diff = [];
  	var topBlocks = Blockly.mainWorkspace.getAllBlocks(false); //+++ ALL OR TOP ONLY?
- 	if (topBlocks.length > BlocksTotal) { //new blocks added
+ 	if (topBlocks.length != BlocksTotal) { //new blocks added or deleted
 		//console.log("new block added");
  		BlocksTotal = topBlocks.length;
- 		//console.log("CURRENTLY: " + BlocksTotal);
- 		var remaining = maxBlocks[CURRENT_LEVEL - 1] - BlocksTotal;
- 		popUpRemaining(remaining);
+ 		if (CURRENT_LEVEL == 3) {
+ 			var remaining = maxBlocks[CURRENT_LEVEL - 1] - BlocksTotal;
+ 			popUpRemaining(remaining);
+ 		}
  		procedureNames.length = 0; //clear the list
  		callNames.length = 0;
  		a.length = 0; b.length = 0; diff.length = 0;
@@ -409,7 +410,7 @@ function createCallers(diff) {
 	var text = '<xml> ';
 	text += Blockly.Xml.domToText(xmlBlock);
 	text += ' </xml>';
-	console.log("CALLER CREATED: " + text);
+	//console.log("CALLER CREATED: " + text);
 	
 	Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, Blockly.Xml.textToDom(text));
 	BlocksTotal += 1;
@@ -503,7 +504,7 @@ function inject() {
 	  	
 	  	case 3:
 	  		popUpRemaining(4);
-		  	setHtmlVisibility('top7-red', true);
+		  	setHtmlVisibility('top5-red', true);
 		  	setHtmlVisibility('hair4-', true);
 		  	setHtmlVisibility('shoes5-gold', true);
 		  	loadBlocks(CURRENT_LEVEL);
@@ -552,13 +553,13 @@ function loadBlocks(level) {
 	if(level == 3) {
 		xml = Blockly.Xml.textToDom(      
 			'<xml>' +    
-			' <block type="top7"></block> ' +
+			' <block type="top5"></block> ' +
 			'</xml>');
 	}
 	else if(level == 4) {
 		xml = Blockly.Xml.textToDom(      
 			'<xml>' +    
-			' <block type="bottom1"> <value name = "color"> <block type="red"> </block> </value> <next> ' +
+			' <block type="bottom1"> <value name = "color"> <block type="pink"> </block> </value> <next> ' +
 			' <block type="hair5"> </block></block> ' +
 			'</xml>');
 	}

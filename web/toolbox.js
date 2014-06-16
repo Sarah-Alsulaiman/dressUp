@@ -7,7 +7,7 @@ function getToolbox() {
 	var toolbox1 = '<xml>';
 	toolbox1 += '  <category></category>';  
 	
-	toolbox1 += '  <category name="+ Tops"> <block type="top1"></block> <block type="top2"></block>  <block type="top3"></block> <block type="top4"></block> <block type="top5"></block> <block type="top6"></block> <block type="top7"></block> ';
+	toolbox1 += '  <category name="+ Tops"> <block type="top1"></block> <block type="top3"></block> <block type="top4"></block> <block type="top5"></block> <block type="top6"></block> <block type="top7"></block> <block type="top2"></block>  ';
 	toolbox1 += '</category> <category> </category>'; //close tops
 	
 	toolbox1 += '<category name="+ Bottoms"> <block type="bottom1"></block> <block type="bottom2"></block> <block type="bottom3"></block> <block type="bottom4"></block> <block type="bottom5"></block> <block type="bottom6"></block>';
@@ -29,7 +29,7 @@ function getToolbox() {
     //------------------------------------------------------------------------------
     var toolbox2 = '<xml> <category></category> ';
     
-   toolbox2 += '  <category name="+ Tops"> <block type="top1"></block> <block type="top2"></block>  <block type="top3"></block> <block type="top4"></block> <block type="top5"></block> <block type="top6"></block> <block type="top7"></block> ';
+   toolbox2 += '  <category name="+ Tops"> <block type="top1"></block> <block type="top3"></block> <block type="top4"></block> <block type="top5"></block> <block type="top6"></block> <block type="top7"></block> <block type="top2"></block> ';
 	toolbox2 += '</category> <category> </category>'; //close tops
       
     toolbox2 += '<category name="+ Bottoms"> <block type="bottom1"></block> <block type="bottom5"></block>';
@@ -86,7 +86,7 @@ function getToolbox() {
                     '<block type="lime"></block> <block type="gold"></block>' ;
       toolbox6 += '</category> <category> </category>'; //close coloring
       
-      toolbox6 += '  <category name="+ Tops"> <block type="top1"></block> <block type="top2"></block>  <block type="top3"></block> <block type="top4"></block> <block type="top5"></block> <block type="top6"></block> <block type="top7"></block> ';
+      toolbox6 += '  <category name="+ Tops"> <block type="top1"></block> <block type="top3"></block> <block type="top4"></block> <block type="top5"></block> <block type="top6"></block> <block type="top7"></block> <block type="top2"></block> ';
 	  toolbox6 += '</category> <category> </category>'; //close tops
       
       toolbox6 += '<category name="+ Bottoms"> <block type="bottom1"></block> <block type="bottom2"></block> <block type="bottom3"></block> <block type="bottom4"></block> <block type="bottom5"></block> <block type="bottom6"></block>';

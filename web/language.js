@@ -61,7 +61,7 @@ Blockly.Language.top3 = {
     this.setColour(330, .45, .65);
     this.appendValueInput("color")
         .setCheck([String, "var"])
-        .appendTitle("   V-neck shirt    ")
+        .appendTitle("   V-neck shirt   ")
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     var thisBlock = this; 
