@@ -205,7 +205,7 @@ void compile(String json) {
   var function_end = json.lastIndexOf('}');
   
   if (function_end != -1 && function_begin != -1 ) {
-    blocks[block_name['func']][1] = true; print("FUNC FOUND");
+    blocks[block_name['func']][1] = true; //print("FUNC FOUND");
     var functionsLine = json.substring(function_begin, function_end+1);
     functionsLine = (((functionsLine.replaceAll('{', '')).replaceAll('}', ''))
                       .replaceAll('\n', '')).replaceAll('][', '], [');
@@ -495,11 +495,11 @@ void processRepeat(List nested, bool consider) {
 //--------------------------------------------------------------------------
 void processCall(List nested, bool consider) {
   var funcName = nested[1];
-  var id = nested[2];
+  var innerId = nested[2];
   var block;
   var outfit;
   
-  blocks[block_name['call']][1] = true; print("CALL FOUND");
+  blocks[block_name['call']][1] = true; //print("CALL FOUND");
   
   if (CURRENT_LEVEL == "6") {
     if (CHECK_AGAINST == "wedding") {
@@ -518,10 +518,13 @@ void processCall(List nested, bool consider) {
   
   for (int i=0; i < subroutines.length; i++) {
     if (funcName == subroutines[i][0]) {
-      block = subroutines[i][1];
+      block = subroutines[i][2];
       if (block.length >= 1) {blocks[block_name['abstraction']][1] = true;}
       if (consider) {
-        var call = "CALL#" + id.toString();
+        var call = "CALL#" + innerId.toString();
+        outfits.add(call);
+        
+        call = "PROC#" + subroutines[i][1].toString();
         outfits.add(call);
       }
       
