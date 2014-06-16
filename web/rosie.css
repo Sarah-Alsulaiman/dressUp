@@ -67,7 +67,7 @@ body {
 }
 
 .level-text p {
-  color: black;
+  color: #ff7f50;
   text-decoration: underline;
   display: inline;
 }
@@ -242,4 +242,5 @@ button {
 #remaining_hint p{
   font-weight:bold;
   color: red;
+  font-size: 24px;
 }

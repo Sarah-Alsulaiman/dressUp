@@ -46,7 +46,7 @@ function logParse(type, key, comment) {
                         "<br>Jasmin is daring Rosie to do it 6 times in a row using only four blocks, can you help Rosie?",
                         "<br>Rosie wants to go out for a walk. Can you help Rosie choose what to wear so that when it's hot outside, she would wear a t-shirt, and when it is cold outside she would wear a jacket?",
                         "<br>Now, instead of choosing a new look each level, you can create a shortcut to a certain look and use it in later levels. You can give this look a name and you'll ba able to use it later!",
-                        "Can you dress Rosie so that when she is going to a wedding, she would have the look \" <p>" + sessionStorage.UserLook + "</p> \" and when she is going to a gym, she would wear gym outfit?<br>",
+                        "Can you dress Rosie so that when she is going to a wedding, she would have the look \"<p>" + sessionStorage.UserLook + "</p>\" and when she is going to a gym, she would wear gym outfit?<br>",
                         "<br>Play with the blocks as you like! <br><br>"
                        ];
 	// Rosie wore a top that is either black or purple, when she wears a black top, she doesn't want to wear a black bottom, otherwise she wants the bottom to be black. Pick a bottom so that she doesn't wear all black (Hint: check new blocks in the control section!)
@@ -248,7 +248,6 @@ function processEvent(event) {
 			}
 			else {
 				popUpHint(msgPart, false);
-				
 			}
 			setHtmlVisibility(outfit, true);
 		}  
@@ -300,7 +299,6 @@ function popUpHint(parts, repeat) {
 			y -= 25; //position middle of the arrow to allow tip to reach block
 			el.style.top =  y + "px";
 		}
-	  	el.style.top =  y + "px";
 	  	el.style.left = x + "px";
 	  	setHtmlOpacity(id, 1.0);
 		fadeOutAfterDelay(id, 1100);
@@ -348,7 +346,7 @@ function workspaceChange() {
 	var procedureNames = [[]];
 	var callNames = [];
  	var a = []; var b = []; var diff = [];
- 	var topBlocks = Blockly.mainWorkspace.getAllBlocks(false); //+++ ALL OR TOP ONLY?
+ 	var topBlocks = Blockly.mainWorkspace.getAllBlocks(false);
  	if (topBlocks.length != BlocksTotal) { //new blocks added or deleted
 		//console.log("new block added");
  		BlocksTotal = topBlocks.length;
@@ -450,7 +448,7 @@ function sendBlocklyCode(log) {
 				var json = cleanCode(code);
 				var origin = window.location.protocol + "//" + window.location.host;
 				window.postMessage(json, origin);
-			  	//console.log("MSG to " + origin + json + " SENT");
+			  	//console.log("JSON = " + json + " SENT");
 						  	
 				tempImg = '';
 		        Playing = true;
@@ -537,7 +535,9 @@ function inject() {
 	document.getElementById('full_text_div').innerHTML= LEVELS_MSG[CURRENT_LEVEL - 1];
 }
 
-
+//---------------------------------------------------------------------------------------------
+// Display remaining number of blocks for this level
+//---------------------------------------------------------------------------------------------
 function popUpRemaining (remain) {
 	id = "remaining_hint";
 	el = document.getElementById(id);
@@ -546,6 +546,7 @@ function popUpRemaining (remain) {
 	el.innerHTML= 'Remaining blocks <p>' + remain + '</p> you cannot use any more blocks, if you want to add a block from the menu, drag one of the current blocks to the trash';
 	setHtmlOpacity('remaining_hint', 1.0);
 }
+
 //---------------------------------------------------------------------------------------------
 // Load the editor with some blocks                                                                
 //---------------------------------------------------------------------------------------------  
@@ -610,7 +611,6 @@ function storeProcedure () {
 			if (topBlocks[j].type == 'procedures_defnoreturn') {
 				var name = topBlocks[j].getProcedureDef();
 				sessionStorage.UserLook = name[0];
-				console.log("UserLook = " + name[0]);
 			}
 		}
   	}
