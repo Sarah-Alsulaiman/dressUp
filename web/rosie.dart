@@ -539,20 +539,21 @@ void processIf(List nested, bool consider) {
   
   blocks[block_name['if']][1] = true;
   
-  if (then.length >= 1 ) {blocks[block_name['then']][1] = true; print("THEN POPULATED");}
-  if (other.length >= 1) {blocks[block_name['other']][1] = true; print("OTHER POPULATED");}
+  if (then.length >= 1 ) {blocks[block_name['then']][1] = true;}
+  if (other.length >= 1) {blocks[block_name['other']][1] = true;}
   
   if (condition != 0) {
     var id = nested[1][2];
-    var call = "CALL#" + id.toString();
-    outfits.add(call);
+    var con = "CONDITION#" + id.toString();
+    outfits.add(con);
     
     if (condition == "going") { //GOING TO block is connected to IF block
       blocks[block_name['going']][1] = true;
       CHECK_AGAINST = (nested[1][1] == "wedding")? "wedding" : "gym";
-      //sendMessage("bg " + CURRENT_PLACE);
       outfits.add(CURRENT_PLACE);
       if (nested[1][1] == CURRENT_PLACE) {
+        var res = "YES#" + id.toString();
+        outfits.add(res);
         CURRENT_BLOCK = 'then';
         interpret(then, true);
         CURRENT_BLOCK = 'other';
@@ -560,6 +561,8 @@ void processIf(List nested, bool consider) {
       }
       
       else {
+        var res = "NO#" + id.toString();
+        outfits.add(res);
         CURRENT_BLOCK = 'other';
         interpret(other, true);
         CURRENT_BLOCK = 'then';
@@ -570,9 +573,10 @@ void processIf(List nested, bool consider) {
     else if (condition == "weather") {
       blocks[block_name['weather']][1] = true;
       CHECK_AGAINST = (nested[1][1] == "hot")? "hot" : "cold";
-      //sendMessage("bg " + CURRENT_WEATHER);
       outfits.add(CURRENT_WEATHER);
       if (nested[1][1] == CURRENT_WEATHER) {
+        var res = "YES#" + id.toString();
+        outfits.add(res);
         CURRENT_BLOCK = 'then';
         interpret(then, true);
         CURRENT_BLOCK = 'other';
@@ -580,6 +584,8 @@ void processIf(List nested, bool consider) {
       }
       
       else {
+        var res = "NO#" + id.toString();
+        outfits.add(res);
         CURRENT_BLOCK = 'other';
         interpret(other, true);
         CURRENT_BLOCK = 'then';

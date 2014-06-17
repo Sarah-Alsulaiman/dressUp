@@ -243,12 +243,7 @@ function processEvent(event) {
 		else if (msgPart[1] == "outfit"){	 // received an outfit or bg to display
 			var outfit = msgPart[2];
 			Blockly.mainWorkspace.highlightBlock2(msgPart[3], true);
-			if (outfit == "REPEAT") {
-				popUpHint(msgPart, true);  		
-			}
-			else {
-				popUpHint(msgPart, false);
-			}
+			popUpHint(msgPart);
 			setHtmlVisibility(outfit, true);
 		}  
 	}
@@ -277,7 +272,7 @@ function getWorkSpacePosition() {
 //---------------------------------------------------------------------------------------
 // Pop up repeat hint
 //---------------------------------------------------------------------------------------
-function popUpHint(parts, repeat) {
+function popUpHint(parts) {
 	var wsPosition = getWorkSpacePosition();
   	var block = Blockly.mainWorkspace.getBlockById(parts[3]);
 	if (block) {
@@ -287,11 +282,16 @@ function popUpHint(parts, repeat) {
 		var y = blockXY.y + wsPosition.top;
 		var el;
 		var id;
-		if (repeat) {
+		if (parts[2] == "REPEAT") {
 			id = "repeat_hint";
 			el = document.getElementById(id);
 			el.innerHTML= 'ROUND <p>' + parts[4] + '</p> out of ' + parts[5];
 			el.style.top =  y + "px";
+		} else if(parts[2] == "YES" || parts[2] == "NO") {
+			id = "repeat_hint";
+		  	el = document.getElementById(id);
+		  	el.innerHTML= '<p>' + parts[2] + '</p>';
+		  	el.style.top =  y + "px";
 		} else {
 			id = "arrow";
 			el = document.getElementById(id);
