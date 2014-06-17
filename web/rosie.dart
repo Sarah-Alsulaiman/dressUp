@@ -86,10 +86,6 @@ bool bg_cold = false;
 Map block_name = new Map <String, int>();
 Map text = new Map <String, String> ();
 
-void processMSG(e) {
-  print("HERE YOU GO!");
-}
-
 
 //----------------------------------------------------------------------
 // Main function
@@ -107,7 +103,7 @@ void main() {
       compile(parts[1]);
       if (outfits.length != 0) { Timer.run(() => display(1)); }
       
-      timer = new Timer.periodic(new Duration(milliseconds: 1200), (Timer t) {
+      timer = new Timer.periodic(new Duration(milliseconds: 1500), (Timer t) {
       if (outfits.length == 0) {
         timer.cancel();
         if (check_input) { sendMessage("DONE!"); }
@@ -273,7 +269,7 @@ void validate() {
       }
     }
     if (! ERR_MSG.isEmpty) {
-      print (ERR_MSG + " NOT FOUND");
+      //print (ERR_MSG + " NOT FOUND");
       check_input = false;
       break;
     }
@@ -369,88 +365,85 @@ checkProperClothing(nested) {
   var place = nested[4];
   
   if (CURRENT_LEVEL == "4" && weather == "cold") {
-            if (CHECK_AGAINST == "hot" ) {
-              if (CURRENT_BLOCK == "then") {
-                ERROR_THEN = 'weather_hot_mismatch'; print("COLD OUTFIT IN HOT DAY");
-              }
-              else { ERROR_OTHER = '';}
-            }
-            
-            else { //check against cold
-              if (CURRENT_BLOCK == 'then') {
-                ERROR_THEN = '';
-              }
-              else {  ERROR_OTHER = 'weather_hot_mismatch'; print("COLD OUTFIT IN HOT DAY"); }
-            }
-            
-          }
+    if (CHECK_AGAINST == "hot" ) {
+      if (CURRENT_BLOCK == "then") {
+        ERROR_THEN = 'weather_hot_mismatch'; print("COLD OUTFIT IN HOT DAY");
+      }
+      else { ERROR_OTHER = '';}
+    }
           
-          else if( CURRENT_LEVEL == "4" && weather == "hot") {
-            if (CHECK_AGAINST == "hot" ) {
-              if(CURRENT_BLOCK == "then" ) {
-                ERROR_THEN = '';
-              }
-              else {
-                ERROR_OTHER = 'weather_cold_mismatch'; print("HOT OUTFIT IN COLD DAY"); 
-              }
-            }
-            
-            else { //check against cold
-              if (CURRENT_BLOCK == "then") {
-                ERROR_THEN = 'weather_cold_mismatch'; print("HOT OUTFIT IN COLD DAY"); 
-              }
-              else {
-                ERROR_OTHER = '';
-              }
-            }
-          }
+    else { //check against cold
+      if (CURRENT_BLOCK == 'then') {
+        ERROR_THEN = '';
+      }
+      else {  ERROR_OTHER = 'weather_hot_mismatch'; print("COLD OUTFIT IN HOT DAY"); }
+    }   
+  }
           
-          
-          if (CURRENT_LEVEL == "6" && place == "wedding") {
-            if (CHECK_AGAINST == "wedding" ) {
-              if (CURRENT_BLOCK == "then") {
-                ERROR_THEN = ''; 
-              }
-              else {
-                ERROR_OTHER = 'place_gym_mismatch'; 
-                ERROR_BLOCK = 'other';
-              }
-            }
+  else if( CURRENT_LEVEL == "4" && weather == "hot") {
+    if (CHECK_AGAINST == "hot" ) {
+      if(CURRENT_BLOCK == "then" ) {
+        ERROR_THEN = '';
+      }
+      else {
+        ERROR_OTHER = 'weather_cold_mismatch'; print("HOT OUTFIT IN COLD DAY"); 
+      }
+    }
             
-            else { //check against gym
-              if (CURRENT_BLOCK == "then") {
-                ERROR_THEN = 'place_gym_mismatch'; 
-                ERROR_BLOCK = 'then';
-              }
-              else {
-                ERROR_OTHER = '';
-              }
-            }
+    else { //check against cold
+      if (CURRENT_BLOCK == "then") {
+        ERROR_THEN = 'weather_cold_mismatch'; print("HOT OUTFIT IN COLD DAY"); 
+      }
+      else {
+        ERROR_OTHER = '';
+      }
+    }
+  }
+  
+  if (CURRENT_LEVEL == "6" && place == "wedding") {
+    if (CHECK_AGAINST == "wedding" ) {
+      if (CURRENT_BLOCK == "then") {
+        ERROR_THEN = ''; 
+      }
+      else {
+        ERROR_OTHER = 'place_gym_mismatch'; 
+        ERROR_BLOCK = 'other';
+      }
+    }
+            
+    else { //check against gym
+      if (CURRENT_BLOCK == "then") {
+        ERROR_THEN = 'place_gym_mismatch'; 
+        ERROR_BLOCK = 'then';
+      }
+      else {
+        ERROR_OTHER = '';
+      }
+    }
        
-          }
+  }
           
-          if (CURRENT_LEVEL == "6" && place == "gym") {
-            if (CHECK_AGAINST == "wedding" ) {
-              if (CURRENT_BLOCK == "then") {
-                ERROR_THEN = 'place_wedding_mismatch'; 
-                ERROR_BLOCK = 'then';
-              }
-              else {
-                ERROR_OTHER = '';
-              }
-            }
+  if (CURRENT_LEVEL == "6" && place == "gym") {
+    if (CHECK_AGAINST == "wedding" ) {
+      if (CURRENT_BLOCK == "then") {
+        ERROR_THEN = 'place_wedding_mismatch'; 
+        ERROR_BLOCK = 'then';
+      }
+      else {
+        ERROR_OTHER = '';
+      }
+    }
             
-            else { //check against gym
-              if (CURRENT_BLOCK == "then") {
-                ERROR_THEN = '';
-              }
-              else {
-                ERROR_OTHER = 'place_wedding_mismatch'; 
-                ERROR_BLOCK = 'other'; 
-              }     
-            }
-          
-          }
+    else { //check against gym
+      if (CURRENT_BLOCK == "then") {
+        ERROR_THEN = '';
+      }
+      else {
+        ERROR_OTHER = 'place_wedding_mismatch'; 
+        ERROR_BLOCK = 'other'; 
+      }     
+    }        
+  }
 }
 
 //--------------------------------------------------------------------------
@@ -554,7 +547,7 @@ void processIf(List nested, bool consider) {
     var call = "CALL#" + id.toString();
     outfits.add(call);
     
-    if (condition == "Going") { //GOING TO block is connected to IF block
+    if (condition == "going") { //GOING TO block is connected to IF block
       blocks[block_name['going']][1] = true;
       CHECK_AGAINST = (nested[1][1] == "wedding")? "wedding" : "gym";
       //sendMessage("bg " + CURRENT_PLACE);

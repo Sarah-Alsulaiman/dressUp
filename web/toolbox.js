@@ -52,7 +52,7 @@ function getToolbox() {
       //------------------------------------------------------------------------------
       var toolbox4 = '<xml> <category></category> ';
       
-      toolbox4 += '<category name = "+ Controls">  <block type = "control_if"> <value name="CONDITION"> <block type="weather"></block> </value> </block>';
+      toolbox4 += '<category name = "+ Controls">  <block type="control_if_weather"></block>';
       toolbox4 += '</category> <category> </category>'; //close controls
       
       toolbox4 += '  <category name="+ Tops"> <block type="top1"></block> <block type="top4"></block>';
@@ -78,7 +78,7 @@ function getToolbox() {
       toolbox6 += '<category name = "+ Add a Definition" custom="PROCEDURE">';
       toolbox6 += '</category> <category> </category>'; //close definitions
       
-      toolbox6 += '<category name = "+ Controls">  <block type = "control_if"> <value name="CONDITION"> <block type="going_to"></block> </value> </block> ';
+      toolbox6 += '<category name = "+ Controls">  <block type="control_if_place"></block>';
       toolbox6 += '</category> <category> </category>'; //close controls
       
       toolbox6 += '<category name="+ Coloring"> <block type="red"></block> <block type="blue"></block>' + 
@@ -119,13 +119,13 @@ function getToolbox() {
       toolbox7 += '<category name = "+ Add a Definition" custom="PROCEDURE">';
       toolbox7 += '</category> <category> </category>'; //close definitions
       
-      toolbox7 += '<category name = "+ Controls"> <block type = "control_if"></block> <block type="going_to"></block> <block type="weather"></block>';
+      toolbox7 += '<category name = "+ Controls"> <block type="control_if_weather"></block> <block type="control_if_place"></block>';
       toolbox7 += '</category> <category> </category>'; //close controls
       
       toolbox7 += '<category name = "+ Repeat"> <block type="control_repeat"></block>';
       toolbox7 += '</category> <category> </category>'; //close repeat
       
-      toolbox7 += '  <category name="+ Tops"> <block type="top1"></block> <block type="top2"></block> <block type="top3"></block> <block type="top4"></block> <block type="top5"></block> <block type="top6"> </block> <block type="top7"> </block>';
+      toolbox7 += '  <category name="+ Tops"> <block type="top1"></block> <block type="top3"></block> <block type="top4"></block> <block type="top5"></block> <block type="top6"> </block> <block type="top7"> </block> <block type="top2"></block>';
       toolbox7 += '</category> <category> </category>'; //close tops
       
       toolbox7 += '<category name="+ Bottoms"> <block type="bottom1"></block> <block type="bottom2"></block> <block type="bottom3"></block> <block type="bottom4"></block> <block type="bottom5"></block> <block type="bottom6"></block>';

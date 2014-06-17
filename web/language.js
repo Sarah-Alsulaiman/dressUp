@@ -856,14 +856,55 @@ Blockly.Language.control_repeat = {
         .appendTitle(new Blockly.FieldTextInput("5"), "COUNT")
         .appendTitle("TIMES   ")
     this.appendStatementInput("DO");
-    this.appendDummyInput();
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     this.setTooltip('');
   }
 };
 
+//---------------------------------------------------------------------------
+// IF weather
+//---------------------------------------------------------------------------
+Blockly.Language.control_if_weather = {
+  helpUrl: 'http://www.example.com/',
+  init: function() {
+    this.setColour(120, .45, .65);
+    this.appendDummyInput()
+    	.setAlign(Blockly.ALIGN_CENTRE)
+        .appendTitle("  IF WEATHER IS:")
+        .appendTitle(new Blockly.FieldDropdown([["HOT", "hot"], ["COLD", "cold"]]), "weather")
+        .appendTitle("? ");
+    this.appendStatementInput("THEN");
+    this.appendDummyInput()
+    	.appendTitle("   ELSE ");
+    this.appendStatementInput("ELSE");
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setTooltip('');
+  }
+};
 
+//---------------------------------------------------------------------------
+// IF place
+//---------------------------------------------------------------------------
+Blockly.Language.control_if_place = {
+  helpUrl: 'http://www.example.com/',
+  init: function() {
+    this.setColour(120, .45, .65);
+    this.appendDummyInput()
+    	.setAlign(Blockly.ALIGN_CENTRE)
+        .appendTitle("  IF GOING TO:")
+        .appendTitle(new Blockly.FieldDropdown([["WEDDING", "wedding"], ["GYM", "gym"]]), "place")
+        .appendTitle("? ");
+    this.appendStatementInput("THEN");
+    this.appendDummyInput()
+    	.appendTitle("   ELSE ");
+    this.appendStatementInput("ELSE");
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setTooltip('');
+  }
+};
 //--------------------------------------------------------------------------
 // IF 
 //--------------------------------------------------------------------------
@@ -939,7 +980,6 @@ Blockly.Language.procedures_defnoreturn = {
         .appendTitle('', 'PARAMS');
     this.appendStatementInput('STACK')
         .appendTitle("");
-    this.appendDummyInput();
    // this.setMutator(new Blockly.Mutator(['procedures_mutatorarg']));
     //this.setTooltip(Blockly.LANG_PROCEDURES_DEFNORETURN_TOOLTIP);
     this.arguments_ = [];

@@ -301,7 +301,7 @@ function popUpHint(parts, repeat) {
 		}
 	  	el.style.left = x + "px";
 	  	setHtmlOpacity(id, 1.0);
-		fadeOutAfterDelay(id, 1100);
+		fadeOutAfterDelay(id, 1400);
 	}
 }
   

@@ -352,6 +352,28 @@ Blockly.JavaScript.control_repeat = function() {
   return '[ "repeat", ' + this.id + ', ' + count + ', [ ' + branch + '] ]';
 };
 
+Blockly.JavaScript.control_if_weather = function() {
+  var weather = this.getTitleValue('weather');
+  var then = Blockly.JavaScript.statementToCode(this, 'THEN');
+  var other = Blockly.JavaScript.statementToCode(this, 'ELSE');
+  
+  code = '["if", ["weather", "'+ weather +'", ' +this.id + ' ], [ ' + then + ' ], [' + other + '] ]';
+  
+ 
+  return code ;
+};
+
+
+Blockly.JavaScript.control_if_place = function() {
+  var place = this.getTitleValue('place');
+  var then = Blockly.JavaScript.statementToCode(this, 'THEN');
+  var other = Blockly.JavaScript.statementToCode(this, 'ELSE');
+  
+  code = '["if", ["going", "'+ place +'", ' +this.id + ' ], [ ' + then + ' ], [' + other + '] ]';
+  
+ 
+  return code ;
+};
 
 
 Blockly.JavaScript.control_if = function() {
