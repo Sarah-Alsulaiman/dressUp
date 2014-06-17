@@ -428,7 +428,7 @@ function sendBlocklyCode(log) {
 		//--------------------------------------------------
 		if (code.length == 0) {
 			setHtmlOpacity("hint1", 1.0);
-		  	fadeOutAfterDelay("hint1", 6000);
+		  	fadeOutAfterDelay("hint1", 8000);
 		  	if(LogRequest) { logParse("preError", "10", "No blocks");}
 		}
 		else {
@@ -438,7 +438,7 @@ function sendBlocklyCode(log) {
 		  	//--------------------------------------------------
 		  	if (!connected) {
 				setHtmlOpacity("hint2", 1.0);
-		            	fadeOutAfterDelay("hint2", 6000);
+		            	fadeOutAfterDelay("hint2", 7000);
 		            	if(LogRequest) { logParse("preError", "11", "blocks not connected");}
 		        } else {
 				//-------------------------------------------------------

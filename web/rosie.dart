@@ -174,7 +174,7 @@ void main() {
   text['repeat_jeans'] = "Remember, the long jeans needs to be repeated!"; 
   text['repeat_skirt'] = "Remember, the long skirt needs to be repeated!"; 
   
-  text['manual_repeat'] = "Remember, you need to dress Rosie the long jeans then the long skirt three times in a row!";
+  text['manual_repeat'] = "Remember, you need to dress Rosie long jeans then long skirt three times in a row!";
   
 }
 
