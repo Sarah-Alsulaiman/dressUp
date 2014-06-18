@@ -564,14 +564,14 @@ Blockly.Language.hair3 = {
 
 
 //-------------------------------------------------------------------------
-// Hair 4 (bony tail)
+// Hair 4 (pony tail)
 //-------------------------------------------------------------------------
 Blockly.Language.hair4 = {
   helpUrl: 'http://www.example.com/',
   init: function() {
     this.setColour(330, .45, .65);
     this.appendDummyInput()
-    	.appendTitle("      Bony tail        ")
+    	.appendTitle("      Pony tail        ")
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     var thisBlock = this; 

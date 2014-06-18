@@ -41,8 +41,8 @@ function logParse(type, key, comment) {
 	var MAX_LEVEL = 7;
 	var MIN_LEVEL = 1;
 	var CURRENT_LEVEL = getLevel();
-	var LEVELS_MSG = ["<br>Rosie is going to a resturant with her friend, Jasmin. Help her decide what to wear.<BR><BR>",
-                        "<br>Jasmin is daring Rosie to wear a long jeans then change to a long skirt, and then change back to a long jeans then wear to a long skirt 3 times in a row, Can you help Rosie accomplish this?",
+	var LEVELS_MSG = ["Rosie is going to a resturant with her friend, Jasmin. Help her decide what to wear.",
+                        "<br>Jasmin is daring Rosie to wear a long jeans then change to a long skirt, and then change back to a long jeans then change to a long skirt 3 times in a row, Can you help Rosie accomplish this?",
                         "<br>Jasmin is daring Rosie to do it 6 times in a row using only six blocks, can you help Rosie?<br><br>",
                         "<br>Rosie wants to go out for a walk. Can you help Rosie choose what to wear so that when it's hot outside, she would wear a t-shirt, and when it is cold outside she would wear a jacket?",
                         "<br>Now, instead of choosing a new look each level, you can create a shortcut to a certain look and use it in later levels. You can give this look a name and you'll be able to use it later!",
@@ -554,7 +554,7 @@ function loadBlocks(level) {
 	if(level == 3) {
 		xml = Blockly.Xml.textToDom(      
 			'<xml>' +    
-			' <block type="top5"> <next> ' +
+			' <block type="top5"  x="300" y="50"> <next> ' +
 			' <block type="hair4"> <next> ' +
 			' <block type="shoes5"> </block> </block> </block> ' +
 			'</xml>');
@@ -562,7 +562,7 @@ function loadBlocks(level) {
 	else if(level == 4) {
 		xml = Blockly.Xml.textToDom(      
 			'<xml>' +    
-			' <block type="bottom1"> <value name = "color"> <block type="pink"> </block> </value> <next> ' +
+			' <block type="bottom1"  x="300" y="50"> <value name = "color"> <block type="pink"> </block> </value> <next> ' +
 			' <block type="hair5"> </block></block> ' +
 			'</xml>');
 	}
@@ -644,6 +644,16 @@ function restoreProcedures() {
 //---------------------------------------------------------------------------------------
 function bumpBackBlocks () {
 	if (Blockly.Block.dragMode_ == 0) {
+		if (Blockly.selected) {
+			var trash = Blockly.selected.workspace.trashcan;
+			var blockHW = Blockly.selected.getHeightWidth();
+			var blockXY = Blockly.selected.getRelativeToSurfaceXY();
+		    var overlap = trash.myDispose(blockHW, blockXY);
+		    if (overlap) {
+		    	goog.Timer.callOnce(trash.close, 100, trash);
+	    		Blockly.selected.dispose(false, true);
+		    }
+		}
 		var topBlocks = Blockly.mainWorkspace.getTopBlocks(false);
 		for (var j = 0; j < topBlocks.length; j++) {
 			if (topBlocks[j].type == 'procedures_defnoreturn') {
