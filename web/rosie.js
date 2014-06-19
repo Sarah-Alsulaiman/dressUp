@@ -361,7 +361,7 @@ function workspaceChange() {
  		for (var j = 0; j < topBlocks.length; j++) {
  			if (topBlocks[j].type == 'procedures_defnoreturn') {
 				var name = topBlocks[j].getProcedureDef();
-				procedureNames.push(name[0]);
+				procedureNames.push("shortcut to: \"".concat(name[0]).concat("\" outfit"));
 				//console.log("procedure " + name[0] + " FOUND");
 				//var callers = Blockly.Procedures.getCallers(name, Blockly.mainWorkspace);
 				//console.log(callers.length);

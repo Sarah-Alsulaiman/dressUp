@@ -427,8 +427,9 @@ Blockly.JavaScript.procedures_callnoreturn = function() {
   // Call a procedure with no return value.
   var funcName = Blockly.JavaScript.variableDB_.getName(
       this.getTitleValue('NAME'), Blockly.Procedures.NAME_TYPE);
-  
-  //var code = funcName + '( );\n';
-  var code = '["CALL",  "' + funcName + '" , ' + this.id + ' ]';
+  //trim string
+  var ind1 = funcName.substring(16);
+  var stripped = ind1.substring(0, ind1.length - 10);
+  var code = '["CALL",  "' + stripped + '" , ' + this.id + ' ]';
   return code;
 };

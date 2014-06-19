@@ -974,7 +974,7 @@ Blockly.Language.procedures_defnoreturn = {
     var name = Blockly.Procedures.findLegalName(
         "Type Name..", this);
     this.appendDummyInput()
-    	.appendTitle("Look shortcut: ")
+    	.appendTitle("Outfit Name:")
         .appendTitle(new Blockly.FieldTextInput(name,
         Blockly.Procedures.rename), 'NAME')
         .appendTitle('', 'PARAMS');
@@ -1168,8 +1168,7 @@ Blockly.Language.procedures_callnoreturn = {
   init: function() {
     this.setColour(230, .45, .65);
     this.appendDummyInput()
-        .appendTitle("Shortcut to:")
-        .appendTitle(Blockly.LANG_PROCEDURES_CALLNORETURN_PROCEDURE, 'NAME');
+        .appendTitle("Shortcut to: \"", "NAME");
     this.setPreviousStatement(true);
     this.setNextStatement(true);
     //this.setTooltip(Blockly.LANG_PROCEDURES_CALLNORETURN_TOOLTIP);
@@ -1182,8 +1181,9 @@ Blockly.Language.procedures_callnoreturn = {
     return this.getTitleValue('NAME');
   },
   renameProcedure: function(oldName, newName) {
-    if (Blockly.Names.equals(oldName, this.getTitleValue('NAME'))) {
-      this.setTitleValue(newName, 'NAME');
+    if ( Blockly.Names.equals("shortcut to: \"".concat(oldName).concat("\" outfit"), (this.getTitleValue('NAME'))) ) {
+      var x = "shortcut to: \"".concat(newName).concat("\" outfit");;
+      this.setTitleValue(x, 'NAME');
     }
   },
   setProcedureParameters: function(paramNames, paramIds) {
