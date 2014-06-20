@@ -28,7 +28,7 @@ body {
 
 #title {
   margin-top: 20px;
-  margin-left: 550px;
+  margin-left: 35%;
 }
 
 #rosie-code {
@@ -43,10 +43,11 @@ body {
    position: absolute;
    left: 1110px;
    top: 78px;
-   width: 600px;
-   height: 900px;
+   width: 534px;
+   height: 801px;
    background: url("images/room.png");
-   
+   background-repeat: no-repeat;
+   background-size: 534px 801px;
 }
 
 .rosie {
@@ -54,16 +55,14 @@ body {
   position: absolute;
   left: 1110px;
   top: 88px;
-  width: 600px;
-  height: 900px;
-   
-   
+  width: 540px;
+  height: 810px;  
 }
 
 .level-text {
    background-color: white;
    width: 891px;
-   height: 86px;
+   height: 80px;
    padding: 5px;
    text-decoration: none;
    font-family: tahoma, arial, sans-serif;
@@ -108,7 +107,7 @@ A:hover {text-decoration: underline; color: rgba(102, 0, 102, .6);}
    border: 2px solid;
    border-color:  rgba(102, 0, 102, .6);
    position: absolute;
-   top: 900px;
+   top: 820px;
    left: 600px;
    text-align: center;
    padding: 2px;
@@ -154,11 +153,12 @@ button {
   opacity: 100;
   z-index: 1;
   visibility : hidden;
-  
+  width: 540px;
+  height: 810px;  
 }
 
-.top {
-   position: absolute;
+.top, .bottom, .shoes, .hair {
+  position: absolute;
    transition: opacity .25s ease-in-out;
    -moz-transition: opacity .25s ease-in-out;
    -webkit-transition: opacity .25s ease-in-out;
@@ -167,46 +167,8 @@ button {
    visibility : hidden;
    left: 1110px;
    top: 88px;
-  
-}
-
-
-.bottom {
-   position: absolute;
-   transition: opacity .25s ease-in-out;
-   -moz-transition: opacity .25s ease-in-out;
-   -webkit-transition: opacity .25s ease-in-out;
-   opacity: 100;
-   z-index: 3;
-   visibility : hidden;
-   left: 1110px;
-   top: 88px;
-}
-
-
-.shoes {
-  position: absolute;
-  transition: opacity .25s ease-in-out;
-  -moz-transition: opacity .25s ease-in-out;
-  -webkit-transition: opacity .25s ease-in-out;
-  opacity: 100;
-  z-index: 3;
-  visibility : hidden;
-  left: 1110px;
-  top: 88px;
-}
-
-
-.hair {
-  position: absolute;
-  transition: opacity .25s ease-in-out;
-  -moz-transition: opacity .25s ease-in-out;
-  -webkit-transition: opacity .25s ease-in-out;
-  opacity: 100;
-  z-index: 3;
-  visibility : hidden;
-  left: 1110px;
-  top: 88px;
+   width: 540px;
+  height: 810px; 
   
 }
 
@@ -230,10 +192,10 @@ button {
 }
 
 #repeat_hint {
-  background-color: rgba(146, 166, 92, 0.5); 
+  background-color: #fc3; 
   border-radius: 15px;
   border: 2px solid;
-  border-color:  rgba(127, 144, 81, .6);
+  border-color:  #fc3;
   text-align: center;
   padding: 2px;
   width: 150px;

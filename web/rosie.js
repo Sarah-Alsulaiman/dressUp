@@ -42,11 +42,11 @@ function logParse(type, key, comment) {
 	var MIN_LEVEL = 1;
 	var CURRENT_LEVEL = getLevel();
 	var LEVELS_MSG = ["Rosie is going to a resturant with her friend, Jasmin. Help her decide what to wear.",
-                        "<br>Jasmin is daring Rosie to wear a long jeans then change to a long skirt, and then change back to a long jeans then change to a long skirt 3 times in a row, Can you help Rosie accomplish this?",
-                        "<br>Jasmin is daring Rosie to do it 6 times in a row using only six blocks, can you help Rosie?<br><br>",
-                        "<br>Rosie wants to go out for a walk. Can you help Rosie choose what to wear so that when it's hot outside, she would wear a t-shirt, and when it is cold outside she would wear a jacket?",
-                        "<br>Now, instead of choosing a new look each level, you can create a shortcut to a certain look and use it in later levels. You can give this look a name and you'll be able to use it later!",
-                        "Can you dress Rosie so that when she is going to a wedding, she would have the look \"<p>" + sessionStorage.UserLook + "</p>\" and when she is going to a gym, she would wear gym outfit?<br>",
+                        "<br>Jasmin is daring Rosie to wear a sequence of [long jeans then change to a long skirt] 3 times in a row. Can you help Rosie do this?",
+                        "<br>Now, Jasmin is daring Rosie to wear the sequence of [long jeans then change to a long skirt] 6 times in a row. Can you help Rosie do this using only six blocks?<br><br>",
+                        "<br>Rosie wants to go for a walk. You don't know whether it's hot or cold outside but can you tell Rosie to wear t-shirt when it's hot, and wear a jacket when it's cold?",
+                        "<br>Now, instead of choosing a new look for Rosie in each level, you can create a shortcut to some look and use it in later levels. Can you give this look a name and you'll be able to use it later?",
+                        "Rosie will go out soon. You don't know whether she is going to a wedding or a gym but can you tell Rosie to get the look \"<p>" + sessionStorage.UserLook + "</p>\" when she's going to a wedding and wear gym clothes when going to a gym?<br>",
                         "<br>Play with the blocks as you like! <br><br>"
                        ];
 	// Rosie wore a top that is either black or purple, when she wears a black top, she doesn't want to wear a black bottom, otherwise she wants the bottom to be black. Pick a bottom so that she doesn't wear all black (Hint: check new blocks in the control section!)
